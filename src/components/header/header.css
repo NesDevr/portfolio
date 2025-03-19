@@ -1,0 +1,160 @@
+.header {
+    width: 100%;
+    position:fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--z-fixed);
+    background-color: var(--body-color);
+}
+
+.nav {
+    height: calc(var(--header-height) + 1.5rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 1rem;
+}
+
+.nav__logo,
+.nav__toggle {
+    color: var(--title-color);
+    font-weight: var(--font-medium);
+}
+
+.nav__list {
+    display: flex;
+    column-gap: 2rem;
+}
+
+.nav__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: var(--small-font-size);
+    color: var(--title-color);
+    font-weight: var(--font-medium);
+    transition: .3s;
+}
+
+.nav__icon,
+.nav__close,
+.nav__toggle {
+    display: none;
+}
+
+/* Active Link */
+.active-link,
+.nav__link:hover {
+    color:var(--title-color-dark)
+}
+/* For medium devices */
+@media screen and (max-width: 768px) {
+    .header {
+        top: initial;
+        bottom: 0;
+    }
+
+    .nav {
+        height: var(--header-height);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1rem; /* Reduce padding to bring logo & button closer */
+    }
+
+    .nav__logo {
+        font-size: var(--h2-font-size);
+        margin-left: 0.5rem; /* Reduce left margin */
+    }
+
+    .nav__toggle {
+        font-size: 1.4rem; /* Slightly increase button size */
+        margin-right: 0.5rem; /* Reduce right margin */
+    }
+
+    .nav__menu {
+        position: fixed;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--body-color);
+        padding: 1.5rem 1rem 3rem; /* Reduce padding */
+        box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
+        border-radius: 1.5rem 1.5rem 0 0;
+        transition: .3s;
+    }
+
+    /* Show Menu */
+    .show-menu {
+        bottom: 0;
+    }
+
+    .nav__list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for better spacing */
+        gap: 1rem; /* Reduce spacing */
+    }
+
+    .nav__icon {
+        font-size: 1.2rem;
+    }
+
+    .nav__close {
+        position: absolute;
+        top: 50%; /* Align it with the menu button */
+        right: 1rem; /* Same position as menu button */
+        transform: translateY(-50%); /* Center it */
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--title-color);
+        z-index: 102; /* Ensures it's above menu content */
+    }
+    
+    
+
+    .nav__close:hover {
+        color: var(--title-color-dark);
+    }
+
+    .nav__toggle {
+        position: absolute; /* Keep it positioned within the nav */
+        top: 50%;
+        right: .5rem; /* Increase this value to move it further right */
+        transform: translateY(-50%); /* Center it vertically */
+        font-size: 1.6rem; /* Adjust the size if needed */
+        cursor: pointer;
+        z-index: 101; /* Ensure it stays on top */
+    }
+    
+    .nav__close {
+        display: none; /* Hide the close button by default */
+    }
+    
+    .show-menu .nav__close {
+        display: flex; /* Show close button when menu is open */
+    }
+    
+    .show-menu .nav__toggle {
+        display: none; /* Hide menu button when menu is open */
+    }
+    
+    
+
+    .nav__icon,
+    .nav__close,
+    .nav__toggle {
+        display: block;
+    }
+}
+
+
+/* For small devices */
+@media screen and (max-width: 350px) {
+    .nav__menu {
+        padding: 2rem 0.25rem 4rem;
+    }
+
+    .nav__list {
+        column-gap: 0;
+    }
+}
