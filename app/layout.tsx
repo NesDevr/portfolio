@@ -1,20 +1,23 @@
-import type { Metadata } from 'next'
-import './globals.css'
+import type { Metadata } from "next";
+import "./globals.css";
+import { ThemeScript } from "./theme-script"; // 👈 adjust path if needed
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
-}
+  title: "Nes Portfolio",
+  description: "Nestor Garcia Portfolio web",
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
+      <head>
+        <ThemeScript />
+      </head>
       <body>{children}</body>
     </html>
-  )
+  );
 }
