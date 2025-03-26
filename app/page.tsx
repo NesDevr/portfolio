@@ -216,12 +216,19 @@ export default function Portfolio() {
                 analysis to create efficient, data-driven systems.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button
-                  variant="outline"
-                  className="dark:text-white dark:border-slate-600 dark:hover:bg-slate-800"
+                <Link
+                  href="/assets/NestorGarciaCV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
                 >
-                  Download CV
-                </Button>
+                  <Button
+                    variant="outline"
+                    className="dark:text-white dark:border-slate-600 dark:hover:bg-slate-800"
+                  >
+                    Download CV
+                  </Button>
+                </Link>
                 <Button onClick={() => scrollToSection("projects")}>
                   View My Work
                 </Button>
