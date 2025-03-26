@@ -332,7 +332,10 @@ export default function Portfolio() {
                       { src: "/icons/python.png", label: "Python" },
                       { src: "/icons/django.png", label: "Django" },
                       { src: "/icons/SQL.png", label: "SQL" },
-                      { src: "/icons/docker.png", label: "Docker" },
+                      {
+                        src: "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png",
+                        label: "Docker",
+                      },
                       { src: "/icons/aws.png", label: "AWS" },
                       { src: "/icons/laravel.png", label: "Laravel" },
                       { src: "/icons/git.png", label: "Git" },
