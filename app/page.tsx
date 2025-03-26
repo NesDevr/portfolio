@@ -49,13 +49,20 @@ export default function Portfolio() {
       }
 
       // Update active section based on scroll position
-      const sections = ["home", "about", "projects", "experience"];
+      const sections = [
+        "home",
+        "about",
+        "projects",
+        "experience",
+        "education",
+        "contact",
+      ];
 
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
+          if (rect.top <= 120 && rect.bottom >= 120) {
             setActiveSection(section);
             break;
           }
@@ -96,14 +103,15 @@ export default function Portfolio() {
                 { id: "about", label: "About" },
                 { id: "projects", label: "Projects" },
                 { id: "experience", label: "Experience" },
+                { id: "education", label: "Education" },
               ].map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`text-base font-medium hover:text-primary transition-colors ${
                     activeSection === item.id
-                      ? "text-primary"
-                      : "text-muted-foreground dark:text-slate-200"
+                      ? "text-white"
+                      : "text-muted-foreground dark:text-slate-400"
                   }`}
                 >
                   {item.label}
@@ -164,6 +172,8 @@ export default function Portfolio() {
                     { id: "about", label: "About" },
                     { id: "projects", label: "Projects" },
                     { id: "experience", label: "Experience" },
+                    { id: "education", label: "Education" },
+                    { id: "contact", label: "Contact" },
                   ].map((item) => (
                     <button
                       key={item.id}
@@ -218,7 +228,7 @@ export default function Portfolio() {
               </div>
               <div className="flex space-x-4 mt-8">
                 <Link
-                  href="https://github.com"
+                  href="https://github.com/Nesgc/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -232,7 +242,7 @@ export default function Portfolio() {
                   </Button>
                 </Link>
                 <Link
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/nestorofirgarcia/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -245,7 +255,7 @@ export default function Portfolio() {
                     <span className="sr-only">LinkedIn</span>
                   </Button>
                 </Link>
-                <Link href="mailto:contact@example.com">
+                <Link href="mailto:nestorofgarcia@gmail.com">
                   <Button
                     variant="ghost"
                     size="icon"
@@ -290,38 +300,40 @@ export default function Portfolio() {
           <div className="max-w-7xl mx-auto space-y-12">
             {/* About Me */}
             <div>
-              <p className="text-muted-foreground dark:text-slate-300 mb-4">
-                I'm a passionate frontend developer with 2+ years of experience
-                building modern web applications. I specialize in React,
-                Next.js, and Tailwind CSS, focusing on creating responsive and
-                accessible user interfaces.
+              <p className="text-muted-foreground dark:text-slate-100 mb-4">
+                Backend Developer & Data Analyst with 3+ years of experience
+                building scalable systems (ERPs, fintech tools) and data
+                pipelines. I'm an engineer who thrives on solving real-world
+                problems—from developing a point-of-sale system to backtesting
+                trading strategies with Python/SQL. Passionate about clean
+                architecture, automation, and data-driven decision-making.
               </p>
-              <p className="text-muted-foreground dark:text-slate-300 mb-4">
-                My journey in web development started when I was in college, and
-                I've been in love with creating things for the web ever since. I
-                enjoy solving complex problems and turning ideas into reality
-                through code.
-              </p>
-              <p className="text-muted-foreground dark:text-slate-300 mb-6">
-                When I'm not coding, you can find me hiking, reading, or
-                experimenting with new technologies.
+              <p className="text-muted-foreground dark:text-slate-100 mb-4">
+                My passion for technology began in college when I first
+                discovered web development, and I've been hooked on creating
+                digital solutions ever since. What excites me most is the
+                challenge of breaking down complex problems and turning abstract
+                ideas into functional, impactful systems. I'm particularly drawn
+                to backend development and data analysis because they form the
+                hidden engines that power great user experiences.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6 mb-12 items-start">
               {/* Columna Izquierda - Hard Skills */}
-              <Card className="text-center p-6 dark:bg-slate-800 dark:border-slate-700 w-full shadow-md">
-                <CardContent className="p-0 pt-4">
-                  <h3 className="text-2xl font-bold mb-6 dark:text-white">
+              <Card className="text-center p-4 dark:bg-slate-800 dark:border-slate-700 w-full shadow-md">
+                <CardContent className="pt-5">
+                  <h3 className="text-2xl font-bold mb-6 dark:text-white text-center">
                     Hard Skills
                   </h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-6 gap-x-4 place-items-center">
+
+                  <div className="flex flex-wrap justify-center gap-x-6 gap-y-6">
                     {[
                       { src: "/icons/python.png", label: "Python" },
                       { src: "/icons/django.png", label: "Django" },
                       { src: "/icons/SQL.png", label: "SQL" },
                       { src: "/icons/docker.png", label: "Docker" },
-                      { src: "/icons/Excel.png", label: "Excel" },
+                      { src: "/icons/aws.png", label: "AWS" },
                       { src: "/icons/laravel.png", label: "Laravel" },
                       { src: "/icons/git.png", label: "Git" },
                       { src: "/icons/js.png", label: "JavaScript" },
@@ -329,14 +341,14 @@ export default function Portfolio() {
                     ].map((skill, index) => (
                       <div
                         key={index}
-                        className="flex flex-col items-center space-y-2 transition-transform duration-200 hover:scale-105"
+                        className="flex flex-col items-center w-20 space-y-2 transition-transform duration-200 hover:scale-105"
                       >
                         <img
                           src={skill.src}
                           alt={skill.label}
-                          className="h-10 w-10"
+                          className="h-10 w-10 object-contain"
                         />
-                        <span className="text-sm font-medium text-muted-foreground dark:text-slate-300">
+                        <span className="text-sm font-medium text-muted-foreground dark:text-slate-300 text-center">
                           {skill.label}
                         </span>
                       </div>
@@ -346,10 +358,10 @@ export default function Portfolio() {
               </Card>
 
               {/* Columna Derecha - Soft Skills + Experience */}
-              <div className="flex flex-col space-y-6 w-full">
+              <div className="flex flex-col space-y-3 w-full">
                 {/* Soft Skills */}
                 <Card className="dark:bg-slate-800 dark:border-slate-700 w-full shadow-md">
-                  <CardContent className="p-6">
+                  <CardContent className="p-3">
                     <h3 className="text-xl font-bold mb-4 dark:text-white text-center">
                       Soft Skills
                     </h3>
@@ -373,9 +385,9 @@ export default function Portfolio() {
                 </Card>
 
                 {/* Years of Experience */}
-                <Card className="text-center p-6 dark:bg-slate-800 dark:border-slate-700 w-full shadow-md">
+                <Card className="text-center p-1 dark:bg-slate-800 dark:border-slate-700 w-full shadow-md">
                   <CardContent className="p-0 pt-8 pb-8">
-                    <p className="text-4xl font-bold text-primary mb-2">2+</p>
+                    <p className="text-4xl font-bold text-primary mb-2">3+</p>
                     <p className="text-muted-foreground dark:text-slate-300">
                       Years Experience
                     </p>
@@ -389,51 +401,65 @@ export default function Portfolio() {
         {/* Projects Section */}
         <section id="projects" className="py-16">
           <h2 className="text-3xl font-bold mb-8 text-center dark:text-white">
-            My Projects
+            My Projects 💻
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
+              {
+                title: "Backtesting Trading Strategies",
+                description:
+                  "Data-intensive application that simulates trading strategies against historical market data. Processes 10,000+ data points to generate performance metrics and risk analysis reports.",
+                image: "/assets/trading.png?height=400&width=600",
+                tags: ["Python", "SQL", "Streamlit"],
+                codeUrl: "https://github.com/Nesgc/BacktestingStrategies",
+              },
+
+              {
+                title: "Internal tool For Athena Systems",
+                description:
+                  "Internal web application that reduced average support ticket resolution time by 30% by providing Safe in-app data correction tools.",
+                image: "/assets/athena.png?height=400&width=600",
+                tags: ["Python", "Flask", "SQL"],
+                isPrivate: true,
+              },
+              {
+                title: "Discord Bot",
+                description:
+                  "Full-stack gaming assistant featuring React dashboard + Django API. Tracks 500+ player characters, automatically notifies guilds about level milestones, and provides game analytics.",
+                image: "/assets/discord.png?height=400&width=600",
+                tags: ["Django", "React", "API", "Python"],
+                codeUrl: "https://github.com/Nesgc/YalaharBot/",
+              },
               {
                 title: "Point of sale system",
                 description:
                   "A full-featured point of sale system built with modules like products, sales, users, roles, focus on solving day to day operations of a store and with a database.",
                 image: "/assets/pos.png?height=400&width=600",
-                tags: ["Laravel", "Tailwind CSS", "Livewire", "PHP", "SQL"],
-              },
-              {
-                title: "Backtesting Trading Strategies",
-                description:
-                  "A backtesting app to aid when creating a new strategy and put it into a test against historical data.",
-                image: "/assets/trading.png?height=400&width=600",
-                tags: ["Python", "SQL", "Streamlit"],
+                tags: [
+                  "Laravel",
+                  "Tailwind CSS",
+                  "Livewire",
+                  "PHP",
+                  "SQL",
+                  "Docker",
+                ],
+                codeUrl: "https://github.com/Nesgc/SalesSystemLivewireV3",
               },
               {
                 title: "Alien Invasion Pygame",
                 description:
-                  "The classic arcade Alien invasion game, developed using Python and Pygame ",
-                image: "/assets/pygame.png?height=400&width=600",
-                tags: ["Python", "Pygame"],
+                  "Object-oriented arcade game built with Pygame featuring progressive difficulty, score tracking, and modular design allowing easy expansion of enemy types and power-ups.",
+                image: "/assets/pygame2.png?height=400&width=600",
+                tags: ["Python", "Pygame", "OOP"],
+                codeUrl: "https://github.com/Nesgc/Alien_Invasion",
               },
               {
-                title: "Weather Dashboard",
+                title: "Indeed Web Scraper",
                 description:
-                  "A weather application that displays current and forecasted weather data.",
-                image: "/placeholder.svg?height=400&width=600",
-                tags: ["React", "API Integration", "Chart.js"],
-              },
-              {
-                title: "Recipe Finder",
-                description:
-                  "An app that helps users find recipes based on ingredients they have.",
-                image: "/placeholder.svg?height=400&width=600",
-                tags: ["Next.js", "Tailwind CSS", "API Integration"],
-              },
-              {
-                title: "Blog Platform",
-                description:
-                  "A content management system for creating and managing blog posts.",
-                image: "/placeholder.svg?height=400&width=600",
-                tags: ["React", "Node.js", "MongoDB"],
+                  "Automated data pipeline that collects and analyzes 1,000+ job postings daily. Transforms raw listings into SQL databases for tracking employment trends and skill demand.",
+                image: "/assets/scrape2.png?height=400&width=600",
+                tags: ["Python", "Selenium", "SQL"],
+                codeUrl: "https://github.com/Nesgc/IndeedScraperPy",
               },
             ].map((project, index) => (
               <Card
@@ -467,18 +493,47 @@ export default function Portfolio() {
                     ))}
                   </div>
                   <div className="flex space-x-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="dark:border-slate-600 dark:text-white dark:hover:bg-slate-700"
-                    >
-                      <Github className="h-4 w-4 mr-2" />
-                      Code
-                    </Button>
-                    <Button size="sm">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Demo
-                    </Button>
+                    {project.isPrivate ? (
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        className="cursor-default opacity-70 dark:bg-slate-700 dark:text-white"
+                        disabled
+                      >
+                        🔒 Private
+                      </Button>
+                    ) : (
+                      <>
+                        {project.codeUrl && (
+                          <Link
+                            href={project.codeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="dark:border-slate-600 dark:text-white dark:hover:bg-slate-700"
+                            >
+                              <Github className="h-4 w-4 mr-2" />
+                              Code
+                            </Button>
+                          </Link>
+                        )}
+                        {project.demoUrl && (
+                          <Link
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Button size="sm">
+                              <ExternalLink className="h-4 w-4 mr-2" />
+                              Demo
+                            </Button>
+                          </Link>
+                        )}
+                      </>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -488,65 +543,68 @@ export default function Portfolio() {
 
         {/* Experience Section */}
         <section id="experience" className="py-16">
-          <h2 className="text-3xl font-bold mb-8 text-center dark:text-white">
-            Work Experience
+          <h2 className="text-3xl font-bold mb-8 text-center dark:text-white ">
+            Work Experience 💼
           </h2>
-          <div className="space-y-8 max-w-3xl mx-auto">
+          <div className="space-y-8 max-w-3xl mx-auto text-base font-sans">
             {[
               {
-                role: "Senior Frontend Developer",
-                company: "Tech Innovations Inc.",
-                period: "2021 - Present",
+                role: "Software Implementation Engineer",
+                company: "Athena Systems",
+                period: "2023 - 2024",
                 description:
-                  "Lead the frontend development team in building and maintaining multiple web applications. Implemented modern frontend architecture and improved performance by 40%.",
+                  "Started as a Support Engineer and was promoted within 3 months for demonstrating development talent. Worked on implementing financial software solutions for private investment funds.",
                 responsibilities: [
-                  "Developed and maintained multiple React applications",
-                  "Implemented responsive designs and ensured cross-browser compatibility",
-                  "Collaborated with UX/UI designers to implement new features",
-                  "Mentored junior developers and conducted code reviews",
+                  "Created client interfaces and implemented new client requirements",
+                  "Performed data cleaning and transformation for tens of thousands of transaction records",
+                  "Developed internal tools using Python and Flask to improve support team efficiency",
+                  "Worked extensively with SQL Server stored procedures for backend implementations",
+                  "Mentored junior engineers and conducted code reviews",
+                  "Collaborated with cross-functional teams to accelerate joint deliverables",
+                  "Created monitoring alerts for daily client processes",
                 ],
               },
               {
-                role: "Frontend Developer",
-                company: "Digital Solutions Ltd.",
-                period: "2019 - 2021",
+                role: "Full Stack Developer",
+                company: "Inprosa",
+                period: "2023",
                 description:
-                  "Worked on various client projects, developing responsive and accessible web applications using React and related technologies.",
+                  "Contributed to the initial phase of an internal football/soccer project, developing core modules.",
                 responsibilities: [
-                  "Built responsive web applications using React and Redux",
-                  "Collaborated with backend developers to integrate APIs",
-                  "Implemented UI components following design specifications",
-                  "Participated in agile development processes",
+                  "Developed user management modules with role-based permissions",
+                  "Implemented tournament management systems",
+                  "Used Laravel, Livewire, and SQL for full-stack development",
+                  "Built modular components for future project scalability",
                 ],
               },
               {
-                role: "Junior Web Developer",
-                company: "WebCraft Agency",
-                period: "2017 - 2019",
+                role: "Web Developer / Data Analyst",
+                company: "Fort Group",
+                period: "2022",
                 description:
-                  "Started as an intern and grew into a full-time role. Worked on various client websites and internal tools.",
+                  "Supported ERP development and provided data-driven insights for company operations.",
                 responsibilities: [
-                  "Developed and maintained client websites using HTML, CSS, and JavaScript",
-                  "Assisted senior developers with larger projects",
-                  "Created responsive layouts and implemented basic animations",
-                  "Troubleshot and fixed bugs in existing websites",
+                  "Developed an ERP system using Laravel, SQL, and Livewire for internal management",
+                  "Managed data systems for truck fleet, invoices, and employee performance",
+                  "Analyzed operational data using Python, SQL, Excel, and Power BI",
+                  "Delivered actionable business insights from complex datasets",
                 ],
               },
             ].map((job, index) => (
               <Card
                 key={index}
-                className="p-6 dark:bg-slate-800 dark:border-slate-700"
+                className="p-6 dark:bg-slate-800 dark:border-slate-700 "
               >
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 ">
                   <div>
-                    <h3 className="text-xl font-bold dark:text-white">
+                    <h3 className="text-xl font-bold dark:text-white ">
                       {job.role}
                     </h3>
                     <p className="text-primary">{job.company}</p>
                   </div>
                   <Badge
                     variant="outline"
-                    className="mt-2 md:mt-0 w-fit dark:border-slate-600 dark:text-white"
+                    className="mt-2 md:mt-0 w-fit dark:border-slate-600 dark:text-white "
                   >
                     {job.period}
                   </Badge>
@@ -558,7 +616,7 @@ export default function Portfolio() {
                   <h4 className="font-semibold mb-2 dark:text-white">
                     Key Responsibilities:
                   </h4>
-                  <ul className="list-disc pl-5 text-muted-foreground dark:text-slate-300 space-y-1">
+                  <ul className="list-disc pl-5 text-muted-foreground dark:text-slate-100 space-y-1">
                     {job.responsibilities.map((item, itemIndex) => (
                       <li key={itemIndex}>{item}</li>
                     ))}
@@ -569,45 +627,110 @@ export default function Portfolio() {
           </div>
         </section>
 
+        {/* Education Section */}
+        <section id="education" className="py-16">
+          <h2 className="text-3xl font-bold mb-8 text-center dark:text-white">
+            Education 📚
+          </h2>
+          <div className="space-y-8 max-w-3xl mx-auto text-lg">
+            {[
+              {
+                degree: "Bachelor’s Degree in Industrial Engineering",
+                institution: "Instituto Tecnológico de Ciudad Madero",
+                period: "2018 - 2023",
+                description:
+                  "Focused on quality engineering solutions, industrial adaptability, data-driven decision-making, and improving business profitability.",
+              },
+              {
+                degree: "Computer Science Engineering",
+                institution: "Instituto Tecnológico de Ciudad Madero",
+                period: "2017 - 2018",
+                description:
+                  "Foundation year focused on core principles of computer science including logic, programming, and system analysis.",
+              },
+            ].map((edu, index) => (
+              <Card
+                key={index}
+                className="p-6 dark:bg-slate-800 dark:border-slate-700"
+              >
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                  <div>
+                    <h3 className="text-xl font-bold dark:text-white">
+                      {edu.degree}
+                    </h3>
+                    <p className="text-primary">{edu.institution}</p>
+                  </div>
+                  <Badge
+                    variant="outline"
+                    className="mt-2 md:mt-0 w-fit dark:border-slate-600 dark:text-white"
+                  >
+                    {edu.period}
+                  </Badge>
+                </div>
+                <p className="text-muted-foreground dark:text-slate-300 mb-4">
+                  {edu.description}
+                </p>
+                {edu.achievements?.length > 0 && (
+                  <div>
+                    <h4 className="font-semibold mb-2 dark:text-white">
+                      Highlights:
+                    </h4>
+                    <ul className="list-disc pl-5 text-muted-foreground dark:text-slate-300 space-y-1">
+                      {edu.achievements.map((item, itemIndex) => (
+                        <li key={itemIndex}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </Card>
+            ))}
+          </div>
+        </section>
         {/* Contact Section */}
         <section id="contact" className="py-16">
           <h2 className="text-3xl font-bold mb-8 text-center dark:text-white">
-            Get In Touch
+            Get In Touch 📬
           </h2>
-          <div className="max-w-md mx-auto text-center">
-            <p className="text-muted-foreground dark:text-slate-300 mb-6">
+
+          <div className="max-w-lg mx-auto flex flex-col items-center text-center space-y-6">
+            <p className="text-muted-foreground dark:text-slate-300">
               I'm currently open to new opportunities. If you have a project
               that needs my expertise or just want to chat, feel free to reach
               out!
             </p>
-            <Button className="w-full sm:w-auto">
-              <Mail className="h-4 w-4 mr-2" />
-              contact@example.com
-            </Button>
-            <div className="flex justify-center space-x-4 mt-8">
+
+            <Link href="mailto:nestorofgarcia@gmail.com">
+              <Button className="w-full sm:w-auto">
+                <Mail className="h-4 w-4 mr-2" />
+                nestorofgarcia@gmail.com
+              </Button>
+            </Link>
+
+            <div className="flex justify-center gap-4 mt-4">
               <Link
-                href="https://github.com"
+                href="https://github.com/Nesgc/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="dark:text-white dark:hover:text-white"
+                  className="text-muted-foreground hover:text-primary dark:text-white"
                 >
                   <Github className="h-5 w-5" />
                   <span className="sr-only">GitHub</span>
                 </Button>
               </Link>
+
               <Link
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/nestorofirgarcia/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="dark:text-white dark:hover:text-white"
+                  className="text-muted-foreground hover:text-primary dark:text-white"
                 >
                   <Linkedin className="h-5 w-5" />
                   <span className="sr-only">LinkedIn</span>
