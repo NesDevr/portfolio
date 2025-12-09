@@ -277,10 +277,10 @@ export default function Portfolio() {
             <div className="order-1 md:order-2 flex justify-center">
               <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20 dark:border-primary/30">
                 <Image
-                  src="/Nestor_Athena_Web.png?height=320&width=320"
+                  src="/Nestor_Picture.png"
                   alt="Nestor Garcia"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top scale-[1.25]"
                   priority
                 />
               </div>
