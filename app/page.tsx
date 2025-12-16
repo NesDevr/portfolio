@@ -302,8 +302,8 @@ export default function Portfolio() {
                         label: "FastAPI",
                       },
                       {
-                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
-                        label: "Flask",
+                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+                        label: "Supabase",
                       },
                       { src: "/icons/laravel.png", label: "Laravel" },
                       {
