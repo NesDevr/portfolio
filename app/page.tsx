@@ -182,8 +182,8 @@ export default function Portfolio() {
                     Download CV
                   </Button>
                 </Link>
-                <Button onClick={() => scrollToSection("projects")}>
-                  View My Work
+                <Button onClick={() => scrollToSection("experience")}>
+                  My Experience
                 </Button>
               </div>
               <div className="flex space-x-4 mt-8">
