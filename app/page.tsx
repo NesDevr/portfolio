@@ -7,8 +7,6 @@ import {
   Linkedin,
   Mail,
   ExternalLink,
-  Moon,
-  Sun,
   ArrowDown,
 } from "lucide-react";
 import Image from "next/image";
@@ -21,23 +19,11 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("dark"); // Set default to dark
 
-  // Apply theme class to document
+  // Force dark mode
   useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-
-    // Save theme preference to localStorage
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
+    document.documentElement.classList.add("dark");
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,8 +38,8 @@ export default function Portfolio() {
       const sections = [
         "home",
         "about",
-        "projects",
         "experience",
+        "projects",
         "education",
         "contact",
       ];
@@ -101,8 +87,8 @@ export default function Portfolio() {
               {[
                 { id: "home", label: "Home" },
                 { id: "about", label: "About" },
-                { id: "projects", label: "Projects" },
                 { id: "experience", label: "Experience" },
+                { id: "projects", label: "Projects" },
                 { id: "education", label: "Education" },
               ].map((item) => (
                 <button
@@ -117,42 +103,8 @@ export default function Portfolio() {
                   {item.label}
                 </button>
               ))}
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleTheme}
-                aria-label={
-                  theme === "light"
-                    ? "Switch to dark mode"
-                    : "Switch to light mode"
-                }
-                className="dark:text-white dark:hover:text-white"
-              >
-                {theme === "light" ? (
-                  <Moon className="h-5 w-5" />
-                ) : (
-                  <Sun className="h-5 w-5" />
-                )}
-              </Button>
             </div>
-            <div className="md:hidden flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleTheme}
-                aria-label={
-                  theme === "light"
-                    ? "Switch to dark mode"
-                    : "Switch to light mode"
-                }
-                className="dark:text-white dark:hover:text-white"
-              >
-                {theme === "light" ? (
-                  <Moon className="h-5 w-5" />
-                ) : (
-                  <Sun className="h-5 w-5" />
-                )}
-              </Button>
+            <div className="md:hidden flex items-center">
               <Button
                 variant="ghost"
                 size="sm"
@@ -212,8 +164,9 @@ export default function Portfolio() {
                 Software Engineer
               </h2>
               <p className="text-muted-foreground dark:text-slate-300 max-w-md mb-8">
-                I enjoy building backend solutions and working with data
-                analysis to create efficient, data-driven systems.
+                I enjoy building reliable,
+                production grade products that make people's work faster and
+                decisions smarter.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -308,21 +261,27 @@ export default function Portfolio() {
             {/* About Me */}
             <div>
               <p className="text-muted-foreground dark:text-slate-100 mb-4">
-                Backend Developer & Data Analyst with 3+ years of experience
-                building scalable systems (ERPs, fintech tools) and data
-                pipelines. I'm an engineer who thrives on solving real-world
-                problems—from developing a point-of-sale system to backtesting
-                trading strategies with Python/SQL. Passionate about clean
-                architecture, automation, and data-driven decision-making.
+                Backend + full-stack engineer with 5+ years of experience
+                building scalable systems (ERPs, Fintech, SaaS, B2B) and data
+                pipelines. I enjoy turning messy, real-world workflows into
+                reliable, production-grade products, ranging from straightforward
+                internal tools to complex systems with automation, analytics, and
+                strong operational reliability.
               </p>
               <p className="text-muted-foreground dark:text-slate-100 mb-4">
-                My passion for technology began in college when I first
-                discovered web development, and I've been hooked on creating
-                digital solutions ever since. What excites me most is the
-                challenge of breaking down complex problems and turning abstract
-                ideas into functional, impactful systems. I'm particularly drawn
-                to backend development and data analysis because they form the
-                hidden engines that power great user experiences.
+                Recently, I've been working on cloud-native manufacturing
+                automation and instant quoting price prediction with Machine
+                Learning, 3D geometry visualization, workflow orchestration with
+                LangGraph, observability, and shipping both backend services and
+                React/TypeScript product experiences. I care a lot about clean
+                architecture, measurable performance, and systems that are easy
+                to operate in production.
+              </p>
+              <p className="text-muted-foreground dark:text-slate-100 mb-4">
+                I got into technology in college through web development and
+                never stopped what still hooks me is breaking down complex
+                problems and shipping solutions that make people's work faster
+                and decisions smarter.
               </p>
             </div>
 
@@ -338,16 +297,46 @@ export default function Portfolio() {
                     {[
                       { src: "/icons/python.png", label: "Python" },
                       { src: "/icons/django.png", label: "Django" },
-                      { src: "/icons/SQL.png", label: "SQL" },
+                      {
+                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+                        label: "FastAPI",
+                      },
+                      {
+                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
+                        label: "Flask",
+                      },
+                      { src: "/icons/laravel.png", label: "Laravel" },
+                      {
+                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+                        label: "PostgreSQL",
+                      },
                       {
                         src: "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png",
                         label: "Docker",
                       },
                       { src: "/icons/aws.png", label: "AWS" },
-                      { src: "/icons/laravel.png", label: "Laravel" },
-                      { src: "/icons/git.png", label: "Git" },
-                      { src: "/icons/js.png", label: "JavaScript" },
+                      {
+                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg",
+                        label: "Azure",
+                      },
+                      {
+                        src: "https://avatars.githubusercontent.com/u/126733545?s=200&v=4",
+                        label: "LangChain",
+                      },
+                      {
+                        src: "https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg",
+                        label: "Scikit-learn",
+                      },
                       { src: "/icons/react.png", label: "React" },
+                      {
+                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+                        label: "Tailwind",
+                      },
+                      { src: "/icons/git.png", label: "Git" },
+                      {
+                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
+                        label: "Postman",
+                      },
                     ].map((skill, index) => (
                       <div
                         key={index}
@@ -368,20 +357,20 @@ export default function Portfolio() {
               </Card>
 
               {/* Columna Derecha - Soft Skills + Experience */}
-              <div className="flex flex-col space-y-3 w-full">
+              <div className="flex flex-col gap-3 w-full h-full">
                 {/* Soft Skills */}
-                <Card className="dark:bg-slate-800 dark:border-slate-700 w-full shadow-md">
-                  <CardContent className="p-3">
+                <Card className="dark:bg-slate-800 dark:border-slate-700 w-full shadow-md flex-1 flex flex-col justify-center">
+                  <CardContent className="p-4">
                     <h3 className="text-xl font-bold mb-4 dark:text-white text-center">
                       Soft Skills
                     </h3>
                     <ul className="flex flex-wrap justify-center gap-3 text-muted-foreground dark:text-slate-300">
                       {[
-                        "Problem-solving",
-                        "Time Management",
-                        "Adaptability",
-                        "Collaboration",
-                        "Communication",
+                        "Problem Solving",
+                        "Technical Leadership",
+                        "Cross-team Collaboration",
+                        "Systems Thinking",
+                        "Ownership",
                       ].map((skill, index) => (
                         <li
                           key={index}
@@ -395,15 +384,158 @@ export default function Portfolio() {
                 </Card>
 
                 {/* Years of Experience */}
-                <Card className="text-center p-1 dark:bg-slate-800 dark:border-slate-700 w-full shadow-md">
-                  <CardContent className="p-0 pt-8 pb-8">
-                    <p className="text-4xl font-bold text-primary mb-2">3+</p>
+                <Card className="text-center dark:bg-slate-800 dark:border-slate-700 w-full shadow-md flex-1 flex flex-col justify-center">
+                  <CardContent className="p-4">
+                    <p className="text-4xl font-bold text-primary mb-2">5+</p>
                     <p className="text-muted-foreground dark:text-slate-300">
                       Years Experience
                     </p>
                   </CardContent>
                 </Card>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Experience Section */}
+        <section id="experience" className="py-16">
+          <h2 className="text-3xl font-bold mb-8 text-center dark:text-white ">
+            Work Experience 💼
+          </h2>
+          <div className="max-w-3xl mx-auto text-base font-sans">
+            <div className="relative md:pl-12 space-y-8">
+              {/* Timeline line */}
+              <div className="absolute left-[8px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-slate-700 hidden md:block" />
+              {[
+                {
+                  role: "Software Engineer",
+                  company: "radii.",
+                  period: "Jan 2025 - Present",
+                  isCurrent: true,
+                  description:
+                    "Building ML-powered pricing systems and scalable backend services for the Instant Quote product at a manufacturing technology company.",
+                  responsibilities: [
+                    "Built machine learning price prediction, combining extracted signals + business rules to improve consistency and speed of estimates",
+                    "Led planning and collaboration across multiple projects: scoping, prioritization, reviews, and cross-team coordination",
+                    "Designed and operated an event-driven cloud architecture on Azure (containers, queues, storage) with retries, idempotency, and clear execution states",
+                    "Added production observability (metrics, tracing, dashboards, alerts) and led debugging of high-impact issues to improve uptime and developer velocity",
+                    "Implemented workflow orchestration with LangGraph for multi-step automation with traceability, structured outputs, and easy iteration",
+                    "Built and scaled backend services (Python) powering the Instant Quote product, including APIs, long-running job processing, and production-grade reliability patterns",
+                    "Designed and optimized PostgreSQL data models and pipelines to store processed results, extracted features, and pricing outputs enabling analytics and ML-ready datasets",
+                    "Implemented CI/CD with GitHub Actions + Docker to build, test, and deploy services to Azure Container Apps (ACR), improving release speed and consistency across environments",
+                  ],
+                  skills: ["Python", "Azure", "PostgreSQL", "LangGraph", "Docker", "React", "Machine Learning"],
+                },
+                {
+                  role: "Software Engineer",
+                  company: "Athena Systems",
+                  period: "Oct 2023 - Jan 2025",
+                  description:
+                    "Started as a Support Engineer and was promoted within 3 months for demonstrating development talent. Worked on implementing financial software solutions for private investment funds.",
+                  responsibilities: [
+                    "Created client interfaces and implemented new client requirements",
+                    "Performed data cleaning and transformation for tens of thousands of transaction records",
+                    "Developed internal tools using Python and Flask to improve support team efficiency",
+                    "Worked extensively with SQL Server stored procedures for backend implementations",
+                    "Mentored junior engineers and conducted code reviews",
+                    "Collaborated with cross-functional teams to accelerate joint deliverables",
+                    "Created monitoring alerts for daily client processes",
+                  ],
+                  skills: ["Python", "Flask", "SQL Server", "ETL", "FIX Protocol"],
+                },
+                {
+                  role: "Full Stack Developer",
+                  company: "Inprosa",
+                  period: "Jan 2023 - Sep 2023",
+                  description:
+                    "Contributed to the initial phase of an internal football/soccer project, developing core modules.",
+                  responsibilities: [
+                    "Developed user management modules with role-based permissions",
+                    "Implemented tournament management systems",
+                    "Used Laravel, Livewire, and SQL for full-stack development",
+                    "Built modular components for future project scalability",
+                  ],
+                  skills: ["Laravel", "Livewire", "PHP", "MySQL", "JavaScript"],
+                },
+                {
+                  role: "Web Developer / Data Analyst",
+                  company: "Fort Group",
+                  period: "Oct 2021 - Dec 2022",
+                  description:
+                    "Supported ERP development and provided data-driven insights for company operations.",
+                  responsibilities: [
+                    "Developed an ERP system using Laravel, SQL, and Livewire for internal management",
+                    "Managed data systems for truck fleet, invoices, and employee performance",
+                    "Analyzed operational data using Python, SQL, Excel, and Power BI",
+                    "Delivered actionable business insights from complex datasets",
+                  ],
+                  skills: ["Laravel", "Python", "SQL", "Power BI", "Excel"],
+                },
+              ].map((job, index) => (
+                <div key={index} className="relative">
+                  {/* Timeline dot */}
+                  <div className={`absolute -left-[47px] top-8 w-4 h-4 rounded-full hidden md:block border-2 border-slate-900 ${
+                    job.isCurrent
+                      ? "bg-primary ring-4 ring-primary/30"
+                      : "bg-slate-500"
+                  }`} />
+
+                  <Card
+                    className={`p-6 dark:bg-slate-800 dark:border-slate-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${
+                      job.isCurrent
+                        ? "ring-2 ring-primary/50 shadow-lg shadow-primary/10"
+                        : ""
+                    }`}
+                  >
+                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h3 className="text-xl font-bold dark:text-white">
+                            {job.role}
+                          </h3>
+                          {job.isCurrent && (
+                            <Badge className="bg-primary/20 text-primary border-primary/30 text-xs">
+                              Current
+                            </Badge>
+                          )}
+                        </div>
+                        <p className="text-primary font-medium">{job.company}</p>
+                      </div>
+                      <Badge
+                        variant="outline"
+                        className="mt-2 md:mt-0 w-fit dark:border-slate-600 dark:text-white"
+                      >
+                        {job.period}
+                      </Badge>
+                    </div>
+                    <p className="text-muted-foreground dark:text-slate-300 mb-4">
+                      {job.description}
+                    </p>
+                    <div className="mb-4">
+                      <h4 className="font-semibold mb-2 dark:text-white">
+                        Key Responsibilities:
+                      </h4>
+                      <ul className="list-disc pl-5 text-muted-foreground dark:text-slate-100 space-y-1">
+                        {job.responsibilities.map((item, itemIndex) => (
+                          <li key={itemIndex}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    {/* Skills tags */}
+                    <div className="flex flex-wrap gap-2 pt-4 border-t dark:border-slate-700">
+                      {job.skills.map((skill, skillIndex) => (
+                        <Badge
+                          key={skillIndex}
+                          variant="secondary"
+                          className="dark:bg-slate-700 dark:text-slate-200 text-xs"
+                        >
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  </Card>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -546,92 +678,6 @@ export default function Portfolio() {
                     )}
                   </div>
                 </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* Experience Section */}
-        <section id="experience" className="py-16">
-          <h2 className="text-3xl font-bold mb-8 text-center dark:text-white ">
-            Work Experience 💼
-          </h2>
-          <div className="space-y-8 max-w-3xl mx-auto text-base font-sans">
-            {[
-              {
-                role: "Software Implementation Engineer",
-                company: "Athena Systems",
-                period: "2023 - 2024",
-                description:
-                  "Started as a Support Engineer and was promoted within 3 months for demonstrating development talent. Worked on implementing financial software solutions for private investment funds.",
-                responsibilities: [
-                  "Created client interfaces and implemented new client requirements",
-                  "Performed data cleaning and transformation for tens of thousands of transaction records",
-                  "Developed internal tools using Python and Flask to improve support team efficiency",
-                  "Worked extensively with SQL Server stored procedures for backend implementations",
-                  "Mentored junior engineers and conducted code reviews",
-                  "Collaborated with cross-functional teams to accelerate joint deliverables",
-                  "Created monitoring alerts for daily client processes",
-                ],
-              },
-              {
-                role: "Full Stack Developer",
-                company: "Inprosa",
-                period: "2023",
-                description:
-                  "Contributed to the initial phase of an internal football/soccer project, developing core modules.",
-                responsibilities: [
-                  "Developed user management modules with role-based permissions",
-                  "Implemented tournament management systems",
-                  "Used Laravel, Livewire, and SQL for full-stack development",
-                  "Built modular components for future project scalability",
-                ],
-              },
-              {
-                role: "Web Developer / Data Analyst",
-                company: "Fort Group",
-                period: "2022",
-                description:
-                  "Supported ERP development and provided data-driven insights for company operations.",
-                responsibilities: [
-                  "Developed an ERP system using Laravel, SQL, and Livewire for internal management",
-                  "Managed data systems for truck fleet, invoices, and employee performance",
-                  "Analyzed operational data using Python, SQL, Excel, and Power BI",
-                  "Delivered actionable business insights from complex datasets",
-                ],
-              },
-            ].map((job, index) => (
-              <Card
-                key={index}
-                className="p-6 dark:bg-slate-800 dark:border-slate-700 "
-              >
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 ">
-                  <div>
-                    <h3 className="text-xl font-bold dark:text-white ">
-                      {job.role}
-                    </h3>
-                    <p className="text-primary">{job.company}</p>
-                  </div>
-                  <Badge
-                    variant="outline"
-                    className="mt-2 md:mt-0 w-fit dark:border-slate-600 dark:text-white "
-                  >
-                    {job.period}
-                  </Badge>
-                </div>
-                <p className="text-muted-foreground dark:text-slate-300 mb-4">
-                  {job.description}
-                </p>
-                <div>
-                  <h4 className="font-semibold mb-2 dark:text-white">
-                    Key Responsibilities:
-                  </h4>
-                  <ul className="list-disc pl-5 text-muted-foreground dark:text-slate-100 space-y-1">
-                    {job.responsibilities.map((item, itemIndex) => (
-                      <li key={itemIndex}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
               </Card>
             ))}
           </div>
