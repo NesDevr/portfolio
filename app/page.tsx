@@ -164,9 +164,8 @@ export default function Portfolio() {
                 Software Engineer
               </h2>
               <p className="text-muted-foreground dark:text-slate-300 max-w-md mb-8">
-                I enjoy building reliable,
-                production grade products that make people's work faster and
-                decisions smarter.
+                I enjoy building reliable, production grade products that make
+                people's work faster and decisions smarter.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -264,15 +263,15 @@ export default function Portfolio() {
                 Backend + full-stack engineer with 5+ years of experience
                 building scalable systems (ERPs, Fintech, SaaS, B2B) and data
                 pipelines. I enjoy turning messy, real-world workflows into
-                reliable, production-grade products, ranging from straightforward
-                internal tools to complex systems with automation, analytics, and
-                strong operational reliability.
+                reliable, production-grade products, ranging from
+                straightforward internal tools to complex systems with
+                automation, analytics, and strong operational reliability.
               </p>
               <p className="text-muted-foreground dark:text-slate-100 mb-4">
                 Recently, I've been working on cloud-native manufacturing
-                automation and instant quoting price prediction with Machine
-                Learning, 3D geometry visualization, workflow orchestration with
-                LangGraph, observability, and shipping both backend services and
+                automation and instant quoting price prediction with ML, 3D
+                geometry visualization, workflow orchestration with LangGraph,
+                observability, and shipping both backend services and
                 React/TypeScript product experiences. I care a lot about clean
                 architecture, measurable performance, and systems that are easy
                 to operate in production.
@@ -413,18 +412,28 @@ export default function Portfolio() {
                   period: "Jan 2025 - Present",
                   isCurrent: true,
                   description:
-                    "Building ML-powered pricing systems and scalable backend services for the Instant Quote product at a manufacturing technology company.",
+                    "Full-time remote role at a manufacturing technology company in Querétaro, Mexico. Building fullstack services.",
                   responsibilities: [
-                    "Built machine learning price prediction, combining extracted signals + business rules to improve consistency and speed of estimates",
+                    "Built and maintained Django backend APIs end-to-end (models, serializers, views/viewsets, permissions, validation) with clean contracts and reliable error handling",
                     "Led planning and collaboration across multiple projects: scoping, prioritization, reviews, and cross-team coordination",
                     "Designed and operated an event-driven cloud architecture on Azure (containers, queues, storage) with retries, idempotency, and clear execution states",
                     "Added production observability (metrics, tracing, dashboards, alerts) and led debugging of high-impact issues to improve uptime and developer velocity",
                     "Implemented workflow orchestration with LangGraph for multi-step automation with traceability, structured outputs, and easy iteration",
-                    "Built and scaled backend services (Python) powering the Instant Quote product, including APIs, long-running job processing, and production-grade reliability patterns",
+                    "Built and scaled backend microservices, including APIs, long-running job processing, and production-grade reliability patterns",
                     "Designed and optimized PostgreSQL data models and pipelines to store processed results, extracted features, and pricing outputs enabling analytics and ML-ready datasets",
                     "Implemented CI/CD with GitHub Actions + Docker to build, test, and deploy services to Azure Container Apps (ACR), improving release speed and consistency across environments",
                   ],
-                  skills: ["Python", "Azure", "PostgreSQL", "LangGraph", "Docker", "React", "Machine Learning"],
+                  skills: [
+                    "Python",
+                    "Django",
+                    "Azure",
+                    "PostgreSQL",
+                    "LangGraph",
+                    "Docker",
+                    "React",
+                    "Machine Learning",
+                    "GitHub Actions",
+                  ],
                 },
                 {
                   role: "Software Engineer",
@@ -441,7 +450,13 @@ export default function Portfolio() {
                     "Collaborated with cross-functional teams to accelerate joint deliverables",
                     "Created monitoring alerts for daily client processes",
                   ],
-                  skills: ["Python", "Flask", "SQL Server", "ETL", "FIX Protocol"],
+                  skills: [
+                    "Python",
+                    "Flask",
+                    "SQL Server",
+                    "ETL",
+                    "FIX Protocol",
+                  ],
                 },
                 {
                   role: "Full Stack Developer",
@@ -474,11 +489,13 @@ export default function Portfolio() {
               ].map((job, index) => (
                 <div key={index} className="relative">
                   {/* Timeline dot */}
-                  <div className={`absolute -left-[47px] top-8 w-4 h-4 rounded-full hidden md:block border-2 border-slate-900 ${
-                    job.isCurrent
-                      ? "bg-primary ring-4 ring-primary/30"
-                      : "bg-slate-500"
-                  }`} />
+                  <div
+                    className={`absolute -left-[47px] top-8 w-4 h-4 rounded-full hidden md:block border-2 border-slate-900 ${
+                      job.isCurrent
+                        ? "bg-primary ring-4 ring-primary/30"
+                        : "bg-slate-500"
+                    }`}
+                  />
 
                   <Card
                     className={`p-6 dark:bg-slate-800 dark:border-slate-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${
@@ -499,7 +516,9 @@ export default function Portfolio() {
                             </Badge>
                           )}
                         </div>
-                        <p className="text-primary font-medium">{job.company}</p>
+                        <p className="text-primary font-medium">
+                          {job.company}
+                        </p>
                       </div>
                       <Badge
                         variant="outline"
