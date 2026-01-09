@@ -418,7 +418,7 @@ export default function Portfolio() {
                     "Led planning and collaboration across multiple projects: scoping, prioritization, reviews, and cross-team coordination",
                     "Designed and operated an event-driven cloud architecture on Azure (containers, queues, storage) with retries, idempotency, and clear execution states",
                     "Added production observability (metrics, tracing, dashboards, alerts) and led debugging of high-impact issues to improve uptime and developer velocity",
-                    "Implemented workflow orchestration with LangGraph for multi-step automation with traceability, structured outputs, and easy iteration",
+                    "Architected a React UI instant quoting system supporting drag-and-drop CAD file uploads, real-time price calculation with async job polling, and a checkout flow integrating shipping/billing address management and PDF quote generation",
                     "Built and scaled backend microservices, including APIs, long-running job processing, and production-grade reliability patterns",
                     "Designed and optimized PostgreSQL data models and pipelines to store processed results, extracted features, and pricing outputs enabling analytics and ML-ready datasets",
                     "Implemented CI/CD with GitHub Actions + Docker to build, test, and deploy services to Azure Container Apps (ACR), improving release speed and consistency across environments",
