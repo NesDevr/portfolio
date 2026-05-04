@@ -214,7 +214,7 @@ export default function Portfolio() {
                     <span className="sr-only">LinkedIn</span>
                   </Button>
                 </Link>
-                <Link href="mailto:nestorofgarcia@gmail.com">
+                <Link href="mailto:nestorofirgarcia@gmail.com">
                   <Button
                     variant="ghost"
                     size="icon"
@@ -774,10 +774,10 @@ export default function Portfolio() {
               out!
             </p>
 
-            <Link href="mailto:nestorofgarcia@gmail.com">
+            <Link href="mailto:nestorofirgarcia@gmail.com">
               <Button className="w-full sm:w-auto">
                 <Mail className="h-4 w-4 mr-2" />
-                nestorofgarcia@gmail.com
+                nestorofirgarcia@gmail.com
               </Button>
             </Link>
 
