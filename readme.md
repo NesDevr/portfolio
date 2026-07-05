@@ -29,7 +29,8 @@ It showcases my projects, experience, skills, and contact information — all in
 
 ## 🛠 Tech Stack
 
-- **Framework:** [Next.js 13+](https://nextjs.org/)
+- **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
+- **UI Library:** [React 19](https://react.dev/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Icons:** [Lucide Icons](https://lucide.dev/)
 - **Deployment:** [Vercel](https://vercel.com/)
@@ -50,7 +51,7 @@ It showcases my projects, experience, skills, and contact information — all in
 ## 🚧 Setup Instructions
 
 ```bash
-git clone https://github.com/Nesgc/Portfolio.git
+git clone https://github.com/NesDevr/Portfolio.git
 cd Portfolio
 npm install
 npm run dev
