@@ -14,11 +14,69 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
+type Project = {
+  title: string;
+  description: string;
+  image: string;
+  imagePosition?: string;
+  tags: string[];
+  codeUrl?: string;
+  websiteUrl?: string;
+  websiteLogo?: string;
+  isPrivate?: boolean;
+};
+
+const tagIcons: Record<string, string> = {
+  Python: "/assets/tech/python.svg",
+  Django: "/assets/tech/django.svg",
+  PostgreSQL: "/assets/tech/postgresql.svg",
+  Azure: "/assets/tech/azure.svg",
+  React: "/assets/tech/react.svg",
+  "Next.js": "/assets/tech/nextjs.svg",
+  Typescript: "/assets/tech/typescript.svg",
+  Streamlit: "/assets/tech/streamlit.svg",
+  Flask: "/assets/tech/flask.svg",
+  Laravel: "/assets/tech/laravel.svg",
+  "Tailwind CSS": "/assets/tech/tailwindcss.svg",
+  Tailwind: "/assets/tech/tailwindcss.svg",
+  Supabase:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+  LangChain: "https://avatars.githubusercontent.com/u/126733545?s=200&v=4",
+  Livewire: "/assets/tech/livewire.svg",
+  PHP: "/assets/tech/php.svg",
+  Pygame: "/assets/tech/pygame.svg",
+  "Three.js": "/assets/tech/threejs.svg",
+  LangGraph: "/assets/tech/langgraph.svg",
+  Docker: "/assets/tech/docker.svg",
+  "Github Actions": "/assets/tech/github-actions.svg",
+  "GitHub Actions": "/assets/tech/github-actions.svg",
+  "SQL Server": "/assets/tech/sql-server.svg",
+  MSSQL: "/assets/tech/sql-server.svg",
+  MySQL: "/assets/tech/mysql.svg",
+  JavaScript: "/assets/tech/javascript.svg",
+  "Machine Learning": "/assets/tech/machine-learning.svg",
+  "Google Cloud": "/assets/tech/google-cloud.svg",
+  Remotion: "/assets/tech/remotion.png",
+  FFmpeg: "/assets/tech/ffmpeg.svg",
+  Prisma: "/assets/tech/prisma.svg",
+  Gemini: "/assets/tech/gemini.svg",
+  "Django REST": "/assets/tech/django-rest.svg",
+  "discord.py": "/assets/tech/discord-py.svg",
+};
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   // Force dark mode
   useEffect(() => {
@@ -74,16 +132,18 @@ export default function Portfolio() {
     <div className="min-h-screen bg-background dark:bg-slate-900 text-foreground dark:text-slate-100 transition-colors duration-200">
       {/* Navigation */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 dark:bg-slate-800/80 backdrop-blur-sm border-b dark:border-slate-800">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-2">
           <nav className="flex justify-between items-center">
-            <div className="flex items-center h-10">
-              <img
+            <div className="flex items-center h-9">
+              <Image
                 src="/LOGO.png"
                 alt="Nestor Garcia Logo"
-                className="h-20 w-auto object-contain"
+                width={160}
+                height={80}
+                className="h-16 w-auto object-contain"
               />
             </div>
-            <div className="hidden md:flex space-x-6">
+            <div className="hidden md:flex items-center gap-2">
               {[
                 { id: "home", label: "Home" },
                 { id: "about", label: "About" },
@@ -94,10 +154,10 @@ export default function Portfolio() {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`text-base font-medium hover:text-primary transition-colors ${
+                  className={`px-3 py-2 text-base font-semibold transition-[color,transform] duration-100 hover:scale-105 ${
                     activeSection === item.id
-                      ? "text-white"
-                      : "text-muted-foreground dark:text-slate-400"
+                      ? "scale-105 text-white"
+                      : "text-muted-foreground hover:text-white dark:text-slate-300"
                   }`}
                 >
                   {item.label}
@@ -133,10 +193,10 @@ export default function Portfolio() {
                         scrollToSection(item.id);
                         setMobileMenuOpen(false);
                       }}
-                      className={`px-4 py-3 rounded-md text-left text-base font-medium hover:bg-muted dark:hover:bg-slate-700 transition-colors ${
+                      className={`px-4 py-3 text-left text-base font-semibold transition-[color,transform] duration-100 hover:scale-[1.02] ${
                         activeSection === item.id
-                          ? "text-primary bg-primary/10 dark:bg-primary/20"
-                          : "text-muted-foreground dark:text-slate-200"
+                          ? "scale-[1.02] text-white"
+                          : "text-muted-foreground hover:text-white dark:text-slate-200"
                       }`}
                     >
                       {item.label}
@@ -158,14 +218,14 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="order-2 md:order-1">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 dark:text-white">
-                Hi, I'm <span className="text-primary">Nestor Garcia</span>
+                Hi, I&apos;m <span className="text-primary">Nestor Garcia</span>
               </h1>
               <h2 className="text-2xl md:text-3xl font-medium text-muted-foreground dark:text-slate-200 mb-6">
                 Software Engineer
               </h2>
               <p className="text-muted-foreground dark:text-slate-300 max-w-md mb-8">
                 I enjoy building reliable, production grade products that make
-                people's work faster and decisions smarter.
+                people&apos;s work faster and decisions smarter.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -187,7 +247,7 @@ export default function Portfolio() {
               </div>
               <div className="flex space-x-4 mt-8">
                 <Link
-                  href="https://github.com/Nesgc/"
+                  href="https://github.com/NesDevr/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -201,7 +261,7 @@ export default function Portfolio() {
                   </Button>
                 </Link>
                 <Link
-                  href="https://www.linkedin.com/in/nestorofirgarcia/"
+                  href="https://www.linkedin.com/in/ngarcia12/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -214,7 +274,7 @@ export default function Portfolio() {
                     <span className="sr-only">LinkedIn</span>
                   </Button>
                 </Link>
-                <Link href="mailto:nestorofirgarcia@gmail.com">
+                <Link href="mailto:nestororgarcia@gmail.com">
                   <Button
                     variant="ghost"
                     size="icon"
@@ -260,17 +320,17 @@ export default function Portfolio() {
             {/* About Me */}
             <div>
               <p className="text-muted-foreground dark:text-slate-100 mb-4">
-                Backend + full-stack engineer with 5+ years of experience
-                building scalable systems (ERPs, Fintech, SaaS, B2B) and data
+                Software engineer with 5+ years of experience building scalable
+                systems (ERPs, Fintech, SaaS, B2B), AI Agents and data
                 pipelines. I enjoy turning messy, real-world workflows into
                 reliable, production-grade products, ranging from
                 straightforward internal tools to complex systems with
                 automation, analytics, and strong operational reliability.
               </p>
               <p className="text-muted-foreground dark:text-slate-100 mb-4">
-                Recently, I've been working on cloud-native manufacturing
-                automation and instant quoting price prediction with ML, 3D
-                geometry visualization, workflow orchestration with LangGraph,
+                Recently, I&apos;ve been working on AI Agent systems, automation
+                and instant quoting price prediction with ML, 3D geometry
+                visualization, workflow orchestration with LangGraph,
                 observability, and shipping both backend services and
                 React/TypeScript product experiences. I care a lot about clean
                 architecture, measurable performance, and systems that are easy
@@ -279,8 +339,8 @@ export default function Portfolio() {
               <p className="text-muted-foreground dark:text-slate-100 mb-4">
                 I got into technology in college through web development and
                 never stopped what still hooks me is breaking down complex
-                problems and shipping solutions that make people's work faster
-                and decisions smarter.
+                problems and shipping solutions that make people&apos;s work
+                faster and decisions smarter.
               </p>
             </div>
 
@@ -341,9 +401,12 @@ export default function Portfolio() {
                         key={index}
                         className="flex flex-col items-center w-20 space-y-2 transition-transform duration-200 hover:scale-105"
                       >
-                        <img
+                        <Image
                           src={skill.src}
                           alt={skill.label}
+                          width={40}
+                          height={40}
+                          unoptimized
                           className="h-10 w-10 object-contain"
                         />
                         <span className="text-sm font-medium text-muted-foreground dark:text-slate-300 text-center">
@@ -399,7 +462,7 @@ export default function Portfolio() {
         {/* Experience Section */}
         <section id="experience" className="py-16">
           <h2 className="text-3xl font-bold mb-8 text-center dark:text-white ">
-            Work Experience 💼
+            Work Experience
           </h2>
           <div className="max-w-3xl mx-auto text-base font-sans">
             <div className="relative md:pl-12 space-y-8">
@@ -484,7 +547,7 @@ export default function Portfolio() {
                     "Analyzed operational data using Python, SQL, Excel, and Power BI",
                     "Delivered actionable business insights from complex datasets",
                   ],
-                  skills: ["Laravel", "Python", "SQL", "Power BI", "Excel"],
+                  skills: ["Laravel", "Python", "MySQL", "Power BI", "Excel"],
                 },
               ].map((job, index) => (
                 <div key={index} className="relative">
@@ -542,15 +605,28 @@ export default function Portfolio() {
                     </div>
                     {/* Skills tags */}
                     <div className="flex flex-wrap gap-2 pt-4 border-t dark:border-slate-700">
-                      {job.skills.map((skill, skillIndex) => (
-                        <Badge
-                          key={skillIndex}
-                          variant="secondary"
-                          className="dark:bg-slate-700 dark:text-slate-200 text-xs"
-                        >
-                          {skill}
-                        </Badge>
-                      ))}
+                      {job.skills.map((skill, skillIndex) => {
+                        const skillIcon = tagIcons[skill];
+
+                        return (
+                          <Badge
+                            key={skillIndex}
+                            variant="secondary"
+                            className="inline-flex items-center gap-1.5 dark:bg-slate-700 dark:text-slate-200 text-xs"
+                          >
+                            {skillIcon && (
+                              <Image
+                                src={skillIcon}
+                                alt=""
+                                width={16}
+                                height={16}
+                                className="h-4 w-4"
+                              />
+                            )}
+                            {skill}
+                          </Badge>
+                        );
+                      })}
                     </div>
                   </Card>
                 </div>
@@ -562,150 +638,363 @@ export default function Portfolio() {
         {/* Projects Section */}
         <section id="projects" className="py-16">
           <h2 className="text-3xl font-bold mb-8 text-center dark:text-white">
-            My Projects 💻
+            My Projects
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
+                title: "Video Factory",
+                description:
+                  "Multi-agent AI video production pipeline that turns a topic into a YouTube-ready package: channel-aware planning, script generation, visual sourcing, TTS narration, Remotion rendering, thumbnails, review gates, cost traces, and final MP4 assembly.",
+                image: "/assets/video-factory-remotion.png?height=400&width=600",
+                imagePosition: "object-bottom",
+                tags: [
+                  "Python",
+                  "React",
+                  "Typescript",
+                  "Google Cloud",
+                  "Remotion",
+                  "FFmpeg",
+                ],
+                codeUrl: "https://github.com/NesDevr/video-factory",
+              },
+              {
+                title: "YT Analyzer",
+                description:
+                  "Full-stack YouTube research platform for creators and content teams. Finds outlier videos, analyzes transcripts and metadata, compares trends, researches keywords, saves videos into folders, and generates AI-assisted content ideas with Gemini.",
+                image:
+                  "/assets/yt-analyzer-outlier-finder.png?height=400&width=600",
+                tags: [
+                  "Next.js",
+                  "React",
+                  "Typescript",
+                  "Tailwind CSS",
+                  "Prisma",
+                  "Google Cloud",
+                  "Gemini",
+                ],
+                codeUrl: "https://github.com/Nesgc/YouTubeAnalyzerWeb",
+              },
+              {
+                title: "Coffee Shop Chatbot",
+                description:
+                  "Next.js coffee storefront with a floating AI chat widget. Uses LangChain and OpenAI with Supabase vector search to retrieve coffee knowledge before answering customer questions.",
+                image: "/assets/coffee-snapshot.png?height=400&width=600",
+                imagePosition: "object-bottom",
+                tags: [
+                  "React",
+                  "Typescript",
+                  "Tailwind CSS",
+                  "Supabase",
+                  "LangChain",
+                ],
+                codeUrl: "https://github.com/NesDevr/coffee-chatbot",
+              },
+              {
                 title: "Backtesting Trading Strategies",
                 description:
-                  "Data-intensive application that simulates trading strategies against historical market data. Processes 10,000+ data points to generate performance metrics and risk analysis reports.",
+                  "Data-intensive application that simulates trading strategies against historical market data. Processes 10,000+ data points to generate performance metrics, risk analysis reports, and visual comparisons for evaluating strategy behavior.",
                 image: "/assets/trading.png?height=400&width=600",
-                tags: ["Python", "SQL", "Streamlit"],
-                codeUrl: "https://github.com/Nesgc/BacktestingStrategies",
+                tags: ["Python", "MSSQL", "Streamlit"],
+                codeUrl: "https://github.com/NesDevr/BacktestingStrategies",
               },
 
               {
                 title: "Internal tool For Athena Systems",
                 description:
-                  "Internal web application that reduced average support ticket resolution time by 30% by providing Safe in-app data correction tools.",
+                  "Internal web application that reduced average support ticket resolution time by 30% by providing safe in-app data correction tools, validation workflows, and faster operational visibility for support engineers.",
                 image: "/assets/athena.png?height=400&width=600",
-                tags: ["Python", "Flask", "SQL"],
-                isPrivate: true,
+                tags: ["Python", "Flask", "MSSQL"],
+                websiteUrl: "https://www.athenasystems.com/",
+                websiteLogo: "/assets/athenaSystems.png",
               },
               {
-                title: "Discord Bot",
+                title: "YalaharBot",
                 description:
-                  "Full-stack gaming assistant featuring React dashboard + Django API. Tracks 500+ player characters, automatically notifies guilds about level milestones, and provides game analytics.",
-                image: "/assets/discord.png?height=400&width=600",
-                tags: ["Django", "React", "API", "Python"],
-                codeUrl: "https://github.com/Nesgc/YalaharBot/",
+                  "Discord automation bot for Tibia servers with hybrid slash/prefix commands, character identity linking, level and death alerts, watched worlds and guilds, leaderboards, a Django REST API, and a Next.js control-panel dashboard.",
+                image: "/assets/yalaharbot-dashboard.png?height=400&width=600",
+                tags: [
+                  "Python",
+                  "Django",
+                  "Django REST",
+                  "discord.py",
+                  "Next.js",
+                  "React",
+                  "Tailwind CSS",
+                ],
+                codeUrl: "https://github.com/NesDevr/yalaharbot",
               },
               {
                 title: "Point of sale system",
                 description:
-                  "A full-featured point of sale system built with modules like products, sales, users, roles, focus on solving day to day operations of a store and with a database.",
+                  "Full-featured point of sale system with modules for products, sales, users, roles, and inventory-focused store operations. Built to streamline daily workflows with a structured database-backed admin experience.",
                 image: "/assets/pos.png?height=400&width=600",
                 tags: [
                   "Laravel",
                   "Tailwind CSS",
                   "Livewire",
                   "PHP",
-                  "SQL",
+                  "MySQL",
                   "Docker",
                 ],
-                codeUrl: "https://github.com/Nesgc/SalesSystemLivewireV3",
+                codeUrl: "https://github.com/NesDevr/SalesSystemLivewireV3",
               },
+
               {
-                title: "Alien Invasion Pygame",
+                title: "radii. instant quoting platform",
                 description:
-                  "Object-oriented arcade game built with Pygame featuring progressive difficulty, score tracking, and modular design allowing easy expansion of enemy types and power-ups.",
-                image: "/assets/pygame2.png?height=400&width=600",
-                tags: ["Python", "Pygame", "OOP"],
-                codeUrl: "https://github.com/Nesgc/Alien_Invasion",
+                  "Built core components of a B2B platform that gives manufacturers instant pricing on custom parts from uploaded CAD files. Designed and shipped a Three.js 3D viewer with DFM analysis overlays, drag-and-drop multi-file upload, async pricing via job polling backed by Django services on an event-driven Azure architecture with LangGraph workflow orchestration.",
+                image: "/assets/DFM.webp?height=400&width=600",
+                tags: [
+                  "Python",
+                  "Django",
+                  "PostgreSQL",
+                  "Azure",
+                  "React",
+                  "Typescript",
+                  "Three.js",
+                  "LangGraph",
+                  "Docker",
+                  "Github Actions",
+                ],
+                websiteUrl: "https://www.radii.com.mx/en",
+                websiteLogo: "/assets/radii_logo.webp",
               },
-              {
-                title: "Indeed Web Scraper",
-                description:
-                  "Automated data pipeline that collects and analyzes 1,000+ job postings daily. Transforms raw listings into SQL databases for tracking employment trends and skill demand.",
-                image: "/assets/scrape2.png?height=400&width=600",
-                tags: ["Python", "Selenium", "SQL"],
-                codeUrl: "https://github.com/Nesgc/IndeedScraperPy",
-              },
-            ].map((project, index) => (
+            ].map((project: Project, index) => (
               <Card
                 key={index}
-                className="overflow-hidden dark:bg-slate-800 dark:border-slate-700"
+                role="button"
+                tabIndex={0}
+                onClick={() => setSelectedProject(project)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    setSelectedProject(project);
+                  }
+                }}
+                className="overflow-hidden dark:bg-slate-800 dark:border-slate-700 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-900"
               >
-                <div className="relative h-48">
+                <div className="relative h-44 bg-slate-950">
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
                     fill
-                    className="object-cover"
+                    className={`object-cover ${project.imagePosition ?? ""}`}
                   />
                 </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-2 dark:text-white">
+                <CardContent className="p-5">
+                  <h3 className="text-lg font-bold mb-2 dark:text-white">
                     {project.title}
                   </h3>
-                  <p className="text-muted-foreground dark:text-slate-300 mb-4">
+                  <p className="mb-4 line-clamp-3 text-sm leading-6 text-muted-foreground dark:text-slate-300">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag, tagIndex) => (
-                      <Badge
-                        key={tagIndex}
-                        variant="secondary"
-                        className="dark:bg-slate-700 dark:text-white"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
+                    {project.tags.map((tag, tagIndex) => {
+                      const tagIcon = tagIcons[tag];
+
+                      return (
+                        <Badge
+                          key={tagIndex}
+                          variant="secondary"
+                          className="inline-flex items-center gap-1.5 text-xs dark:bg-slate-700 dark:text-white"
+                        >
+                          {tagIcon && (
+                            <Image
+                              src={tagIcon}
+                              alt=""
+                              width={16}
+                              height={16}
+                              className="h-4 w-4"
+                            />
+                          )}
+                          {tag}
+                        </Badge>
+                      );
+                    })}
                   </div>
-                  <div className="flex space-x-2">
-                    {project.isPrivate ? (
+                  <div
+                    className="flex flex-wrap gap-2"
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    {project.isPrivate && (
                       <Button
                         variant="secondary"
                         size="sm"
                         className="cursor-default opacity-70 dark:bg-slate-700 dark:text-white"
                         disabled
                       >
-                        🔒 Private
+                        🔒 Private Code
                       </Button>
-                    ) : (
-                      <>
-                        {project.codeUrl && (
-                          <Link
-                            href={project.codeUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="dark:border-slate-600 dark:text-white dark:hover:bg-slate-700"
-                            >
-                              <Github className="h-4 w-4 mr-2" />
-                              Code
-                            </Button>
-                          </Link>
-                        )}
-                        {project.demoUrl && (
-                          <Link
-                            href={project.demoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Button size="sm">
-                              <ExternalLink className="h-4 w-4 mr-2" />
-                              Demo
-                            </Button>
-                          </Link>
-                        )}
-                      </>
+                    )}
+                    {project.codeUrl && (
+                      <Link
+                        href={project.codeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="dark:border-slate-600 dark:text-white dark:hover:bg-slate-700"
+                        >
+                          <Github className="h-4 w-4 mr-2" />
+                          Code
+                        </Button>
+                      </Link>
+                    )}
+                    {project.websiteUrl && (
+                      <Link
+                        href={project.websiteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="dark:border-slate-600 dark:text-white dark:hover:bg-slate-700"
+                        >
+                          {project.websiteLogo ? (
+                            <span className="mr-2 flex h-7 w-7 items-center justify-center rounded bg-white p-1">
+                              <Image
+                                src={project.websiteLogo}
+                                alt=""
+                                width={24}
+                                height={24}
+                                className="h-5 w-5 object-contain"
+                              />
+                            </span>
+                          ) : (
+                            <ExternalLink className="h-4 w-4 mr-2" />
+                          )}
+                          Website
+                        </Button>
+                      </Link>
                     )}
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
+          <Dialog
+            open={selectedProject !== null}
+            onOpenChange={(open) => {
+              if (!open) {
+                setSelectedProject(null);
+              }
+            }}
+          >
+            <DialogContent className="max-h-[90vh] max-w-5xl overflow-y-auto p-0 dark:border-slate-700 dark:bg-slate-900">
+              {selectedProject && (
+                <div>
+                  <div className="relative min-h-[280px] bg-slate-950 sm:min-h-[420px]">
+                    <Image
+                      src={selectedProject.image}
+                      alt={selectedProject.title}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="space-y-5 p-6 sm:p-8">
+                    <DialogHeader>
+                      <DialogTitle className="text-2xl dark:text-white">
+                        {selectedProject.title}
+                      </DialogTitle>
+                      <DialogDescription className="text-base leading-7 dark:text-slate-300">
+                        {selectedProject.description}
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.tags.map((tag, tagIndex) => {
+                        const tagIcon = tagIcons[tag];
+
+                        return (
+                          <Badge
+                            key={tagIndex}
+                            variant="secondary"
+                            className="inline-flex items-center gap-1.5 dark:bg-slate-700 dark:text-white"
+                          >
+                            {tagIcon && (
+                              <Image
+                                src={tagIcon}
+                                alt=""
+                                width={16}
+                                height={16}
+                                className="h-4 w-4"
+                              />
+                            )}
+                            {tag}
+                          </Badge>
+                        );
+                      })}
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.isPrivate && (
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          className="cursor-default opacity-70 dark:bg-slate-700 dark:text-white"
+                          disabled
+                        >
+                          🔒 Private Code
+                        </Button>
+                      )}
+                      {selectedProject.codeUrl && (
+                        <Link
+                          href={selectedProject.codeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="dark:border-slate-600 dark:text-white dark:hover:bg-slate-700"
+                          >
+                            <Github className="h-4 w-4 mr-2" />
+                            Code
+                          </Button>
+                        </Link>
+                      )}
+                      {selectedProject.websiteUrl && (
+                        <Link
+                          href={selectedProject.websiteUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="dark:border-slate-600 dark:text-white dark:hover:bg-slate-700"
+                          >
+                            {selectedProject.websiteLogo ? (
+                              <span className="mr-2 flex h-7 w-7 items-center justify-center rounded bg-white p-1">
+                                <Image
+                                  src={selectedProject.websiteLogo}
+                                  alt=""
+                                  width={24}
+                                  height={24}
+                                  className="h-5 w-5 object-contain"
+                                />
+                              </span>
+                            ) : (
+                              <ExternalLink className="h-4 w-4 mr-2" />
+                            )}
+                            Website
+                          </Button>
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </DialogContent>
+          </Dialog>
         </section>
 
         {/* Education Section */}
         <section id="education" className="py-16">
           <h2 className="text-3xl font-bold mb-8 text-center dark:text-white">
-            Education 📚
+            Education
           </h2>
           <div className="space-y-8 max-w-3xl mx-auto text-lg">
             {[
@@ -745,18 +1034,20 @@ export default function Portfolio() {
                 <p className="text-muted-foreground dark:text-slate-300 mb-4">
                   {edu.description}
                 </p>
-                {edu.achievements?.length > 0 && (
-                  <div>
-                    <h4 className="font-semibold mb-2 dark:text-white">
-                      Highlights:
-                    </h4>
-                    <ul className="list-disc pl-5 text-muted-foreground dark:text-slate-300 space-y-1">
-                      {edu.achievements.map((item, itemIndex) => (
-                        <li key={itemIndex}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                {"achievements" in edu &&
+                  Array.isArray(edu.achievements) &&
+                  edu.achievements.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold mb-2 dark:text-white">
+                        Highlights:
+                      </h4>
+                      <ul className="list-disc pl-5 text-muted-foreground dark:text-slate-300 space-y-1">
+                        {edu.achievements.map((item, itemIndex) => (
+                          <li key={itemIndex}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
               </Card>
             ))}
           </div>
@@ -764,26 +1055,26 @@ export default function Portfolio() {
         {/* Contact Section */}
         <section id="contact" className="py-16">
           <h2 className="text-3xl font-bold mb-8 text-center dark:text-white">
-            Get In Touch 📬
+            Get In Touch
           </h2>
 
           <div className="max-w-lg mx-auto flex flex-col items-center text-center space-y-6">
             <p className="text-muted-foreground dark:text-slate-300">
-              I'm currently open to new opportunities. If you have a project
-              that needs my expertise or just want to chat, feel free to reach
-              out!
+              I&apos;m currently open to new opportunities. If you have a
+              project that needs my expertise or just want to chat, feel free to
+              reach out!
             </p>
 
-            <Link href="mailto:nestorofirgarcia@gmail.com">
+            <Link href="mailto:nestororgarcia@gmail.com">
               <Button className="w-full sm:w-auto">
                 <Mail className="h-4 w-4 mr-2" />
-                nestorofirgarcia@gmail.com
+                nestororgarcia@gmail.com
               </Button>
             </Link>
 
             <div className="flex justify-center gap-4 mt-4">
               <Link
-                href="https://github.com/Nesgc/"
+                href="https://github.com/NesDevr/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -798,7 +1089,7 @@ export default function Portfolio() {
               </Link>
 
               <Link
-                href="https://www.linkedin.com/in/nestorofirgarcia/"
+                href="https://www.linkedin.com/in/ngarcia12/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
