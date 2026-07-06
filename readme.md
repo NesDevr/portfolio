@@ -1,33 +1,33 @@
-# 🧑‍💻 Nestor Garcia — Portfolio
+# Nestor Garcia — Portfolio
 
 Welcome to my personal software engineering portfolio, built with **Next.js**, **Tailwind CSS**, and the **App Router**.  
 It showcases my projects, experience, skills, and contact information — all in a clean and modern interface.
 
 ---
 
-## 🚀 Live Site
+## Live Site
 
-🔗 [https://nestorgarcia.vercel.app/](https://nestorgarcia.vercel.app/)
+[https://nestorportf.vercel.app/](https://nestorportf.vercel.app/)
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
-### 💻 Home Page
+### Home Page
 
 ![Home Screenshot](./screenshots/home.png)
 
-### 🧠 About + Skills
+### About + Skills
 
 ![About Screenshot](./screenshots/about.png)
 
-### 🧾 Projects
+### Projects
 
 ![Projects Screenshot](./screenshots/projects.png)
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
 - **UI Library:** [React 19](https://react.dev/)
@@ -38,9 +38,9 @@ It showcases my projects, experience, skills, and contact information — all in
 
 ---
 
-## 📁 Features
+## Features
 
-- Responsive, dark mode-ready layout ✨
+- Responsive, dark mode-ready layout
 - Sections: About, Skills, Projects, Experience, Education, Contact
 - Smooth scroll + active nav highlight
 - SEO optimized head configuration
@@ -48,7 +48,7 @@ It showcases my projects, experience, skills, and contact information — all in
 
 ---
 
-## 🚧 Setup Instructions
+## Setup Instructions
 
 ```bash
 git clone https://github.com/NesDevr/Portfolio.git
