@@ -1,4 +1,4 @@
-# Nestor Garcia — Portfolio
+# Nestor Portfolio
 
 Welcome to my personal software engineering portfolio, built with **Next.js**, **Tailwind CSS**, and the **App Router**.  
 It showcases my projects, experience, skills, and contact information — all in a clean and modern interface.
@@ -16,14 +16,6 @@ It showcases my projects, experience, skills, and contact information — all in
 ### Home Page
 
 ![Home Screenshot](./screenshots/home.png)
-
-### About + Skills
-
-![About Screenshot](./screenshots/about.png)
-
-### Projects
-
-![Projects Screenshot](./screenshots/projects.png)
 
 ---
 

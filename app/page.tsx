@@ -57,6 +57,8 @@ const tagIcons: Record<string, string> = {
   "Three.js": "/assets/tech/threejs.svg",
   LangGraph: "/assets/tech/langgraph.svg",
   Docker: "/assets/tech/docker.svg",
+  "Express.js":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
   "Github Actions": "/assets/tech/github-actions.svg",
   "GitHub Actions": "/assets/tech/github-actions.svg",
   "SQL Server": "/assets/tech/sql-server.svg",
@@ -361,47 +363,47 @@ export default function Portfolio() {
 
                   <div className="flex flex-wrap justify-center gap-x-6 gap-y-6">
                     {[
-                      { src: "/icons/python.png", label: "Python" },
-                      { src: "/icons/django.png", label: "Django" },
+                      { src: "/assets/tech/python.svg", label: "Python" },
+                      { src: "/assets/tech/django.svg", label: "Django" },
                       {
                         src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
                         label: "FastAPI",
+                      },
+                      { src: "/assets/tech/react.svg", label: "React" },
+                      { src: "/assets/tech/nextjs.svg", label: "Next.js" },
+                      {
+                        src: "/assets/tech/typescript.svg",
+                        label: "TypeScript",
+                      },
+                      {
+                        src: "/assets/tech/postgresql.svg",
+                        label: "PostgreSQL",
+                      },
+                      {
+                        src: "/assets/tech/sql-server.svg",
+                        label: "SQL Server",
                       },
                       {
                         src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
                         label: "Supabase",
                       },
-                      { src: "/icons/laravel.png", label: "Laravel" },
+                      { src: "/assets/tech/azure.svg", label: "Azure" },
                       {
-                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-                        label: "PostgreSQL",
+                        src: "/assets/tech/google-cloud.svg",
+                        label: "Google Cloud",
                       },
+                      { src: "/assets/tech/docker.svg", label: "Docker" },
                       {
-                        src: "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png",
-                        label: "Docker",
-                      },
-                      { src: "/icons/aws.png", label: "AWS" },
-                      {
-                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg",
-                        label: "Azure",
+                        src: "/assets/tech/github-actions.svg",
+                        label: "GitHub Actions",
                       },
                       {
                         src: "https://avatars.githubusercontent.com/u/126733545?s=200&v=4",
                         label: "LangChain",
                       },
                       {
-                        src: "https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg",
-                        label: "Scikit-learn",
-                      },
-                      { src: "/icons/react.png", label: "React" },
-                      {
-                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-                        label: "Tailwind",
-                      },
-                      { src: "/icons/git.png", label: "Git" },
-                      {
-                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
-                        label: "Postman",
+                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+                        label: "Express.js",
                       },
                     ].map((skill, index) => (
                       <div
@@ -496,6 +498,7 @@ export default function Portfolio() {
                   skills: [
                     "Python",
                     "Django",
+                    "Express.js",
                     "Azure",
                     "PostgreSQL",
                     "LangGraph",
@@ -581,7 +584,7 @@ export default function Portfolio() {
                             {job.role}
                           </h3>
                           {job.isCurrent && (
-                            <Badge className="bg-primary/20 text-primary border-primary/30 text-xs">
+                            <Badge className="bg-primary/20 text-primary border-primary/30 text-xs hover:bg-primary/20">
                               Current
                             </Badge>
                           )}
@@ -657,6 +660,7 @@ export default function Portfolio() {
                 tags: [
                   "Python",
                   "Django",
+                  "Express.js",
                   "PostgreSQL",
                   "Azure",
                   "React",
