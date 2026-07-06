@@ -32,6 +32,7 @@ type Project = {
   websiteUrl?: string;
   websiteLogo?: string;
   isPrivate?: boolean;
+  hidden?: boolean;
 };
 
 const tagIcons: Record<string, string> = {
@@ -70,6 +71,12 @@ const tagIcons: Record<string, string> = {
   Gemini: "/assets/tech/gemini.svg",
   "Django REST": "/assets/tech/django-rest.svg",
   "discord.py": "/assets/tech/discord-py.svg",
+  Kotlin:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
+  Android:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg",
+  "Jetpack Compose":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jetpackcompose/jetpackcompose-original.svg",
 };
 
 export default function Portfolio() {
@@ -643,23 +650,27 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                title: "Video Factory",
+                title: "radii. instant quoting platform",
                 description:
-                  "Multi-agent AI video production pipeline that turns a topic into a YouTube-ready package: channel-aware planning, script generation, visual sourcing, TTS narration, Remotion rendering, thumbnails, review gates, cost traces, and final MP4 assembly.",
-                image: "/assets/video-factory-remotion.png?height=400&width=600",
-                imagePosition: "object-bottom",
+                  "Built core components of a B2B platform that gives manufacturers instant pricing on custom parts from uploaded CAD files. Designed and shipped a Three.js 3D viewer with DFM analysis overlays, drag-and-drop multi-file upload, async pricing via job polling backed by Django services on an event-driven Azure architecture with LangGraph workflow orchestration.",
+                image: "/assets/DFM.webp?height=400&width=600",
                 tags: [
                   "Python",
+                  "Django",
+                  "PostgreSQL",
+                  "Azure",
                   "React",
                   "Typescript",
-                  "Google Cloud",
-                  "Remotion",
-                  "FFmpeg",
+                  "Three.js",
+                  "LangGraph",
+                  "Docker",
+                  "Github Actions",
                 ],
-                codeUrl: "https://github.com/NesDevr/video-factory",
+                websiteUrl: "https://www.radii.com.mx/en",
+                websiteLogo: "/assets/radii_logo.webp",
               },
               {
-                title: "YT Analyzer",
+                title: "YouTube Outlier Research Platform",
                 description:
                   "Full-stack YouTube research platform for creators and content teams. Finds outlier videos, analyzes transcripts and metadata, compares trends, researches keywords, saves videos into folders, and generates AI-assisted content ideas with Gemini.",
                 image:
@@ -673,7 +684,24 @@ export default function Portfolio() {
                   "Google Cloud",
                   "Gemini",
                 ],
-                codeUrl: "https://github.com/Nesgc/YouTubeAnalyzerWeb",
+                codeUrl: "https://github.com/NesDevr/YouTubeAnalyzerWeb",
+              },
+              {
+                title: "AI Video Production Factory",
+                description:
+                  "Multi-agent AI video production pipeline that turns a topic into a YouTube-ready package: channel-aware planning, script generation, visual sourcing, TTS narration, Remotion rendering, thumbnails, review gates, cost traces, and final MP4 assembly.",
+                image:
+                  "/assets/video-factory-remotion.png?height=400&width=600",
+                imagePosition: "object-bottom",
+                tags: [
+                  "Python",
+                  "React",
+                  "Typescript",
+                  "Google Cloud",
+                  "Remotion",
+                  "FFmpeg",
+                ],
+                codeUrl: "https://github.com/NesDevr/video-factory",
               },
               {
                 title: "Coffee Shop Chatbot",
@@ -691,16 +719,31 @@ export default function Portfolio() {
                 codeUrl: "https://github.com/NesDevr/coffee-chatbot",
               },
               {
+                title: "Minley Budget App + MCP Server",
+                description:
+                  "Native Android budget tracker with an optional local MCP server for assistant-driven account, transaction, reminder, and monthly activity tools. The app tracks accounts, transactions, categories, recurring items, and reminders, built with Kotlin, Jetpack Compose, Material 3, Hilt, WorkManager, DataStore, and Supabase Auth/PostgREST/Realtime.",
+                image: "/assets/minley-budget.jpg?height=400&width=600",
+                tags: [
+                  "Kotlin",
+                  "Android",
+                  "Jetpack Compose",
+                  "Supabase",
+                  "Typescript",
+                ],
+                codeUrl: "https://github.com/NesDevr/minley-budget",
+              },
+              {
                 title: "Backtesting Trading Strategies",
                 description:
                   "Data-intensive application that simulates trading strategies against historical market data. Processes 10,000+ data points to generate performance metrics, risk analysis reports, and visual comparisons for evaluating strategy behavior.",
                 image: "/assets/trading.png?height=400&width=600",
                 tags: ["Python", "MSSQL", "Streamlit"],
                 codeUrl: "https://github.com/NesDevr/BacktestingStrategies",
+                hidden: true,
               },
 
               {
-                title: "Internal tool For Athena Systems",
+                title: "Athena Support Operations Tool",
                 description:
                   "Internal web application that reduced average support ticket resolution time by 30% by providing safe in-app data correction tools, validation workflows, and faster operational visibility for support engineers.",
                 image: "/assets/athena.png?height=400&width=600",
@@ -723,6 +766,7 @@ export default function Portfolio() {
                   "Tailwind CSS",
                 ],
                 codeUrl: "https://github.com/NesDevr/yalaharbot",
+                hidden: true,
               },
               {
                 title: "Point of sale system",
@@ -738,29 +782,9 @@ export default function Portfolio() {
                   "Docker",
                 ],
                 codeUrl: "https://github.com/NesDevr/SalesSystemLivewireV3",
+                hidden: true,
               },
-
-              {
-                title: "radii. instant quoting platform",
-                description:
-                  "Built core components of a B2B platform that gives manufacturers instant pricing on custom parts from uploaded CAD files. Designed and shipped a Three.js 3D viewer with DFM analysis overlays, drag-and-drop multi-file upload, async pricing via job polling backed by Django services on an event-driven Azure architecture with LangGraph workflow orchestration.",
-                image: "/assets/DFM.webp?height=400&width=600",
-                tags: [
-                  "Python",
-                  "Django",
-                  "PostgreSQL",
-                  "Azure",
-                  "React",
-                  "Typescript",
-                  "Three.js",
-                  "LangGraph",
-                  "Docker",
-                  "Github Actions",
-                ],
-                websiteUrl: "https://www.radii.com.mx/en",
-                websiteLogo: "/assets/radii_logo.webp",
-              },
-            ].map((project: Project, index) => (
+            ].filter((project: Project) => !project.hidden).map((project: Project, index) => (
               <Card
                 key={index}
                 role="button"
