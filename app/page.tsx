@@ -688,7 +688,7 @@ export default function Portfolio() {
                   "Google Cloud",
                   "Gemini",
                 ],
-                codeUrl: "https://github.com/NesDevr/YouTubeAnalyzerWeb",
+                codeUrl: "https://github.com/NesDevr/youtube-content-analyzer",
               },
               {
                 title: "AI Video Production Factory",
@@ -720,7 +720,7 @@ export default function Portfolio() {
                   "Supabase",
                   "LangChain",
                 ],
-                codeUrl: "https://github.com/NesDevr/coffee-chatbot",
+                codeUrl: "https://github.com/NesDevr/coffee-shop-chatbot",
               },
               {
                 title: "Minley Budget App + MCP Server",
@@ -734,7 +734,7 @@ export default function Portfolio() {
                   "Supabase",
                   "Typescript",
                 ],
-                codeUrl: "https://github.com/NesDevr/minley-budget",
+                codeUrl: "https://github.com/NesDevr/minley-budget-app",
               },
               {
                 title: "Backtesting Trading Strategies",
@@ -769,7 +769,7 @@ export default function Portfolio() {
                   "React",
                   "Tailwind CSS",
                 ],
-                codeUrl: "https://github.com/NesDevr/yalaharbot",
+                codeUrl: "https://github.com/NesDevr/yalaharbot-tibia-discord-bot",
                 hidden: true,
               },
               {
@@ -785,7 +785,8 @@ export default function Portfolio() {
                   "MySQL",
                   "Docker",
                 ],
-                codeUrl: "https://github.com/NesDevr/SalesSystemLivewireV3",
+                codeUrl:
+                  "https://github.com/NesDevr/sales-management-system-laravel-livewire",
                 hidden: true,
               },
             ].filter((project: Project) => !project.hidden).map((project: Project, index) => (

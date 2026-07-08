@@ -167,7 +167,7 @@ endobj
 /A <<
 /S /URI
 /Type /Action
-/URI (https\072\057\057github\056com\057NesDevr\057YouTubeAnalyzerWeb)
+/URI (https\072\057\057github\056com\057NesDevr\057youtube\055content\055analyzer)
 >>
 /Border [ 0 0 0 ]
 /Rect [ 516.7832 564.33 535.8568 576.81 ]
@@ -193,7 +193,7 @@ endobj
 /A <<
 /S /URI
 /Type /Action
-/URI (https\072\057\057github\056com\057NesDevr\057coffee\055chatbot)
+/URI (https\072\057\057github\056com\057NesDevr\057coffee\055shop\055chatbot)
 >>
 /Border [ 0 0 0 ]
 /Rect [ 442.2256 474.83 461.2992 487.31 ]
@@ -229,9 +229,9 @@ xref
 0000004632 00000 n 
 0000004864 00000 n 
 0000005060 00000 n 
-0000005272 00000 n 
-0000005482 00000 n 
-0000005693 00000 n 
+0000005284 00000 n 
+0000005494 00000 n 
+0000005713 00000 n 
 trailer
 <<
 /Size 20
@@ -239,5 +239,5 @@ trailer
 /Info 1 0 R
 >>
 startxref
-7580
+7600
 %%EOF
