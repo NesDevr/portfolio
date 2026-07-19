@@ -13,9 +13,13 @@ It showcases my projects, experience, skills, and contact information — all in
 
 ## Screenshots
 
-### Home Page
+### Landing Page
 
-![Home Screenshot](./screenshots/home.png)
+![Portfolio landing page](./screenshots/portfolio-home.png)
+
+### Projects
+
+![Portfolio projects section](./screenshots/portfolio-projects.png)
 
 ---
 
