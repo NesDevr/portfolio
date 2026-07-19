@@ -8,6 +8,8 @@ import {
   Mail,
   ExternalLink,
   ArrowDown,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,6 +29,12 @@ type Project = {
   description: string;
   image: string;
   imagePosition?: string;
+  screenshots?: Array<{
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  }>;
   tags: string[];
   codeUrl?: string;
   websiteUrl?: string;
@@ -79,13 +87,18 @@ const tagIcons: Record<string, string> = {
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg",
   "Jetpack Compose":
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jetpackcompose/jetpackcompose-original.svg",
+  "Chrome Extension":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg",
+  IndexedDB: "/assets/tech/indexeddb.svg",
 };
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showAllProjects, setShowAllProjects] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedScreenshotIndex, setSelectedScreenshotIndex] = useState(0);
 
   // Force dark mode
   useEffect(() => {
@@ -650,7 +663,10 @@ export default function Portfolio() {
           <h2 className="text-3xl font-bold mb-8 text-center dark:text-white">
             My Projects
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            id="project-grid"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
             {[
               {
                 title: "radii. instant quoting platform",
@@ -677,8 +693,34 @@ export default function Portfolio() {
                 title: "YouTube Outlier Research Platform",
                 description:
                   "Full-stack YouTube research platform for creators and content teams. Finds outlier videos, analyzes transcripts and metadata, compares trends, researches keywords, saves videos into folders, and generates AI-assisted content ideas with Gemini.",
-                image:
-                  "/assets/yt-analyzer-outlier-finder.png?height=400&width=600",
+                image: "/assets/youtube-analyzer/02-outlier-finder.png",
+                imagePosition: "object-top",
+                screenshots: [
+                  {
+                    src: "/assets/youtube-analyzer/02-outlier-finder.png",
+                    alt: "YouTube Analyzer outlier finder",
+                    width: 1280,
+                    height: 720,
+                  },
+                  {
+                    src: "/assets/youtube-analyzer/03-keyword-research.png",
+                    alt: "YouTube Analyzer keyword research",
+                    width: 1280,
+                    height: 720,
+                  },
+                  {
+                    src: "/assets/youtube-analyzer/04-google-trends.png",
+                    alt: "YouTube Analyzer Google Trends research",
+                    width: 1280,
+                    height: 720,
+                  },
+                  {
+                    src: "/assets/youtube-analyzer/05-channel-starter.png",
+                    alt: "YouTube Analyzer channel starter",
+                    width: 1280,
+                    height: 720,
+                  },
+                ],
                 tags: [
                   "Next.js",
                   "React",
@@ -725,8 +767,40 @@ export default function Portfolio() {
               {
                 title: "Minley Budget App + MCP Server",
                 description:
-                  "Native Android budget tracker with an optional local MCP server for assistant-driven account, transaction, reminder, and monthly activity tools. The app tracks accounts, transactions, categories, recurring items, and reminders, built with Kotlin, Jetpack Compose, Material 3, Hilt, WorkManager, DataStore, and Supabase Auth/PostgREST/Realtime.",
+                  "Built a native Android budgeting system that centralizes accounts, transactions, categories, recurring items, reminders, and monthly activity. I designed and implemented the app in Kotlin and Jetpack Compose, then added a local MCP server exposing validated finance tools for assistant-driven actions. Key challenges included synchronizing application state with Supabase, scheduling reliable reminders, and restricting assistant actions to safe, explicit operations. Personal project with public source code.",
                 image: "/assets/minley-budget.jpg?height=400&width=600",
+                screenshots: [
+                  {
+                    src: "/assets/minley/01-overview.png",
+                    alt: "Minley monthly budget overview",
+                    width: 1080,
+                    height: 2400,
+                  },
+                  {
+                    src: "/assets/minley/02-accounts.png",
+                    alt: "Minley accounts screen",
+                    width: 1080,
+                    height: 2400,
+                  },
+                  {
+                    src: "/assets/minley/03-add-expense.png",
+                    alt: "Adding an expense in Minley",
+                    width: 1080,
+                    height: 2400,
+                  },
+                  {
+                    src: "/assets/minley/04-activity.png",
+                    alt: "Minley monthly activity screen",
+                    width: 1080,
+                    height: 2400,
+                  },
+                  {
+                    src: "/assets/minley/05-reminders.png",
+                    alt: "Minley reminders screen",
+                    width: 1080,
+                    height: 2400,
+                  },
+                ],
                 tags: [
                   "Kotlin",
                   "Android",
@@ -735,6 +809,53 @@ export default function Portfolio() {
                   "Typescript",
                 ],
                 codeUrl: "https://github.com/NesDevr/minley-budget-app",
+              },
+              {
+                title: "Job Autofill + Tracker Chrome Extension",
+                description:
+                  "Built a local-first Chrome extension that centralizes job application autofill, tracking, follow-ups, reusable answers, and proposal workflows. I designed and implemented the extension with React, TypeScript, WXT, and IndexedDB, then added optional OpenAI-powered drafting and parsing with a bring-your-own-key model. Key challenges included filling React-controlled forms reliably across multiple applicant tracking systems, preserving user privacy with local storage, and restricting automation to explicit user-triggered actions. Personal project with public source code.",
+                image: "/assets/job-tracker/01-application-details.png",
+                imagePosition: "object-top",
+                screenshots: [
+                  {
+                    src: "/assets/job-tracker/01-application-details.png",
+                    alt: "Job Tracker application details dashboard",
+                    width: 1905,
+                    height: 854,
+                  },
+                  {
+                    src: "/assets/job-tracker/02-quick-side-panel.png",
+                    alt: "Job Tracker quick side panel",
+                    width: 505,
+                    height: 874,
+                  },
+                  {
+                    src: "/assets/job-tracker/03-autofill-sidebar.png",
+                    alt: "Job application autofill sidebar",
+                    width: 1684,
+                    height: 935,
+                  },
+                  {
+                    src: "/assets/job-tracker/04-demo-profile-retake.png",
+                    alt: "Job Tracker demo profile",
+                    width: 1905,
+                    height: 854,
+                  },
+                  {
+                    src: "/assets/job-tracker/05-answer-library.png",
+                    alt: "Job Tracker reusable answer library",
+                    width: 1905,
+                    height: 854,
+                  },
+                ],
+                tags: [
+                  "React",
+                  "Typescript",
+                  "Tailwind CSS",
+                  "Chrome Extension",
+                  "IndexedDB",
+                ],
+                codeUrl: "https://github.com/NesDevr/job-autofill-tracker",
               },
               {
                 title: "Backtesting Trading Strategies",
@@ -754,6 +875,7 @@ export default function Portfolio() {
                 tags: ["Python", "Flask", "MSSQL"],
                 websiteUrl: "https://www.athenasystems.com/",
                 websiteLogo: "/assets/athenaSystems.png",
+                hidden: true,
               },
               {
                 title: "YalaharBot",
@@ -789,19 +911,27 @@ export default function Portfolio() {
                   "https://github.com/NesDevr/sales-management-system-laravel-livewire",
                 hidden: true,
               },
-            ].filter((project: Project) => !project.hidden).map((project: Project, index) => (
+            ]
+              .filter(
+                (project: Project) => showAllProjects || !project.hidden,
+              )
+              .map((project: Project) => (
               <Card
-                key={index}
+                key={project.title}
                 role="button"
                 tabIndex={0}
-                onClick={() => setSelectedProject(project)}
+                onClick={() => {
+                  setSelectedScreenshotIndex(0);
+                  setSelectedProject(project);
+                }}
                 onKeyDown={(event) => {
                   if (event.key === "Enter" || event.key === " ") {
                     event.preventDefault();
+                    setSelectedScreenshotIndex(0);
                     setSelectedProject(project);
                   }
                 }}
-                className="overflow-hidden dark:bg-slate-800 dark:border-slate-700 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-900"
+                className="animate-in fade-in slide-in-from-bottom-3 overflow-hidden duration-300 dark:bg-slate-800 dark:border-slate-700 cursor-pointer transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-900"
               >
                 <div className="relative h-44 bg-slate-950">
                   <Image
@@ -905,6 +1035,23 @@ export default function Portfolio() {
               </Card>
             ))}
           </div>
+          <div className="mt-10 flex justify-center">
+            <Button
+              type="button"
+              variant="outline"
+              aria-expanded={showAllProjects}
+              aria-controls="project-grid"
+              onClick={() => setShowAllProjects((current) => !current)}
+              className="group min-w-48 border-slate-600 bg-slate-900/40 text-white shadow-lg shadow-black/10 hover:bg-slate-800"
+            >
+              {showAllProjects ? "Show fewer projects" : "Show more projects"}
+              <ArrowDown
+                className={`ml-2 h-4 w-4 transition-transform duration-300 ${
+                  showAllProjects ? "rotate-180" : ""
+                }`}
+              />
+            </Button>
+          </div>
           <Dialog
             open={selectedProject !== null}
             onOpenChange={(open) => {
@@ -913,17 +1060,116 @@ export default function Portfolio() {
               }
             }}
           >
-            <DialogContent className="max-h-[90vh] max-w-5xl overflow-y-auto p-0 dark:border-slate-700 dark:bg-slate-900">
+            <DialogContent className="max-h-[90vh] max-w-5xl overflow-x-hidden overflow-y-auto p-0 dark:border-slate-700 dark:bg-slate-900">
               {selectedProject && (
-                <div>
-                  <div className="relative min-h-[280px] bg-slate-950 sm:min-h-[420px]">
-                    <Image
-                      src={selectedProject.image}
-                      alt={selectedProject.title}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
+                <div className="min-w-0">
+                  {selectedProject.screenshots ? (
+                    <div className="overflow-hidden bg-slate-950 px-12 py-6 sm:px-16">
+                      <div className="relative">
+                        <figure className="relative h-[52vh] min-h-[300px] max-h-[600px] overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-2xl shadow-black/30 sm:h-[60vh]">
+                          {selectedProject.screenshots.map(
+                            (screenshot, index) => (
+                              <div
+                                key={screenshot.src}
+                                aria-hidden={
+                                  selectedScreenshotIndex !== index
+                                }
+                                className={`absolute inset-0 transition-opacity duration-200 ${
+                                  selectedScreenshotIndex === index
+                                    ? "opacity-100"
+                                    : "pointer-events-none opacity-0"
+                                }`}
+                              >
+                                <Image
+                                  src={screenshot.src}
+                                  alt={
+                                    selectedScreenshotIndex === index
+                                      ? screenshot.alt
+                                      : ""
+                                  }
+                                  fill
+                                  loading="eager"
+                                  sizes="(max-width: 640px) 80vw, 850px"
+                                  className="object-contain"
+                                />
+                              </div>
+                            ),
+                          )}
+                        </figure>
+                      {selectedProject.screenshots.length > 1 && (
+                        <>
+                          <button
+                            type="button"
+                            aria-label="Previous screenshot"
+                            onClick={() =>
+                              setSelectedScreenshotIndex((current) =>
+                                current === 0
+                                  ? selectedProject.screenshots!.length - 1
+                                  : current - 1,
+                              )
+                            }
+                            className="absolute left-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-slate-900/90 text-white shadow-lg transition hover:bg-slate-700 sm:left-4"
+                          >
+                            <ChevronLeft className="h-5 w-5" />
+                          </button>
+                          <button
+                            type="button"
+                            aria-label="Next screenshot"
+                            onClick={() =>
+                              setSelectedScreenshotIndex(
+                                (current) =>
+                                  (current + 1) %
+                                  selectedProject.screenshots!.length,
+                              )
+                            }
+                            className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-slate-900/90 text-white shadow-lg transition hover:bg-slate-700 sm:right-4"
+                          >
+                            <ChevronRight className="h-5 w-5" />
+                          </button>
+                        </>
+                      )}
+                      </div>
+                      {selectedProject.screenshots.length > 1 && (
+                          <div className="mt-4 flex items-center justify-center gap-2">
+                            {selectedProject.screenshots.map(
+                              (screenshot, index) => (
+                                <button
+                                  key={screenshot.src}
+                                  type="button"
+                                  aria-label={`Show screenshot ${index + 1}`}
+                                  aria-current={
+                                    selectedScreenshotIndex === index
+                                      ? "true"
+                                      : undefined
+                                  }
+                                  onClick={() =>
+                                    setSelectedScreenshotIndex(index)
+                                  }
+                                  className={`h-2 rounded-full transition-all ${
+                                    selectedScreenshotIndex === index
+                                      ? "w-6 bg-primary"
+                                      : "w-2 bg-slate-600 hover:bg-slate-400"
+                                  }`}
+                                />
+                              ),
+                            )}
+                            <span className="ml-2 text-xs tabular-nums text-slate-400">
+                              {selectedScreenshotIndex + 1} /{" "}
+                              {selectedProject.screenshots.length}
+                            </span>
+                          </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="relative min-h-[280px] bg-slate-950 sm:min-h-[420px]">
+                      <Image
+                        src={selectedProject.image}
+                        alt={selectedProject.title}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  )}
                   <div className="space-y-5 p-6 sm:p-8">
                     <DialogHeader>
                       <DialogTitle className="text-2xl dark:text-white">

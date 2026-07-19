@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">IndexedDB</title>
+  <defs>
+    <linearGradient id="database" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="32" cy="14" rx="23" ry="9" fill="url(#database)"/>
+  <path d="M9 14v13c0 5 10.3 9 23 9s23-4 23-9V14c0 5-10.3 9-23 9S9 19 9 14Z" fill="#3B82F6"/>
+  <path d="M9 27v13c0 5 10.3 9 23 9s23-4 23-9V27c0 5-10.3 9-23 9S9 32 9 27Z" fill="#2563EB"/>
+  <path d="M9 40v10c0 5 10.3 9 23 9s23-4 23-9V40c0 5-10.3 9-23 9S9 45 9 40Z" fill="#1D4ED8"/>
+  <path d="M15 29c4.2 2.6 10.2 4 17 4s12.8-1.4 17-4" fill="none" stroke="#BFDBFE" stroke-linecap="round" stroke-opacity=".7" stroke-width="2"/>
+  <path d="M15 42c4.2 2.6 10.2 4 17 4s12.8-1.4 17-4" fill="none" stroke="#BFDBFE" stroke-linecap="round" stroke-opacity=".55" stroke-width="2"/>
+</svg>
