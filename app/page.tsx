@@ -40,7 +40,6 @@ type Project = {
   websiteUrl?: string;
   websiteLogo?: string;
   isPrivate?: boolean;
-  hidden?: boolean;
 };
 
 const tagIcons: Record<string, string> = {
@@ -90,6 +89,7 @@ const tagIcons: Record<string, string> = {
   "Chrome Extension":
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg",
   IndexedDB: "/assets/tech/indexeddb.svg",
+  Electron: "/assets/tech/electron.svg",
 };
 
 export default function Portfolio() {
@@ -858,13 +858,35 @@ export default function Portfolio() {
                 codeUrl: "https://github.com/NesDevr/job-autofill-tracker",
               },
               {
+                title: "ObjectBuilder Studio",
+                description:
+                  "Windows desktop editor for browsing, editing, and exporting Open Tibia DAT/SPR assets. Supports object properties, animations, composed sprite previews, bulk sprite replacement, undo/redo, and verified paired exports for OTServ, OTCv8, PXG, and PokeTibia clients.",
+                image: "/assets/objectbuilder-studio/staticpreview.png",
+                imagePosition: "object-top",
+                screenshots: [
+                  {
+                    src: "/assets/objectbuilder-studio/staticpreview.png",
+                    alt: "ObjectBuilder Studio asset editing workspace",
+                    width: 1456,
+                    height: 906,
+                  },
+                  {
+                    src: "/assets/objectbuilder-studio/previewimage.gif",
+                    alt: "ObjectBuilder Studio editing DAT and SPR assets",
+                    width: 1280,
+                    height: 720,
+                  },
+                ],
+                tags: ["Electron", "React", "Typescript"],
+                codeUrl: "https://github.com/NesDevr/objectbuilder-studio",
+              },
+              {
                 title: "Backtesting Trading Strategies",
                 description:
                   "Data-intensive application that simulates trading strategies against historical market data. Processes 10,000+ data points to generate performance metrics, risk analysis reports, and visual comparisons for evaluating strategy behavior.",
                 image: "/assets/trading.png?height=400&width=600",
                 tags: ["Python", "MSSQL", "Streamlit"],
                 codeUrl: "https://github.com/NesDevr/BacktestingStrategies",
-                hidden: true,
               },
 
               {
@@ -875,7 +897,6 @@ export default function Portfolio() {
                 tags: ["Python", "Flask", "MSSQL"],
                 websiteUrl: "https://www.athenasystems.com/",
                 websiteLogo: "/assets/athenaSystems.png",
-                hidden: true,
               },
               {
                 title: "YalaharBot",
@@ -892,7 +913,6 @@ export default function Portfolio() {
                   "Tailwind CSS",
                 ],
                 codeUrl: "https://github.com/NesDevr/yalaharbot-tibia-discord-bot",
-                hidden: true,
               },
               {
                 title: "Point of sale system",
@@ -909,11 +929,10 @@ export default function Portfolio() {
                 ],
                 codeUrl:
                   "https://github.com/NesDevr/sales-management-system-laravel-livewire",
-                hidden: true,
               },
             ]
               .filter(
-                (project: Project) => showAllProjects || !project.hidden,
+                (_project: Project, index) => showAllProjects || index < 6,
               )
               .map((project: Project) => (
               <Card
