@@ -10,7 +10,9 @@ import {
   ArrowDown,
   ChevronLeft,
   ChevronRight,
+  FileText,
 } from "lucide-react";
+import { WorkflowPreview, type WorkflowKind } from "@/components/workflow-preview";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -27,7 +29,7 @@ import {
 type Project = {
   title: string;
   description: string;
-  image: string;
+  image?: string;
   imagePosition?: string;
   screenshots?: Array<{
     src: string;
@@ -40,16 +42,29 @@ type Project = {
   websiteUrl?: string;
   websiteLogo?: string;
   isPrivate?: boolean;
+  workflow?: WorkflowKind;
+  caseStudy?: {
+    problem: string;
+    contribution: string;
+    implementation: string;
+    validation: string;
+    outcome: string;
+  };
 };
 
 const tagIcons: Record<string, string> = {
   Python: "/assets/tech/python.svg",
+  AWS: "/assets/tech/aws.svg",
+  Git: "/assets/tech/git.svg",
+  FastAPI: "/assets/tech/fastapi.svg",
+  PowerShell: "/assets/tech/powershell.svg",
   Django: "/assets/tech/django.svg",
   PostgreSQL: "/assets/tech/postgresql.svg",
   Azure: "/assets/tech/azure.svg",
   React: "/assets/tech/react.svg",
   "Next.js": "/assets/tech/nextjs.svg",
   Typescript: "/assets/tech/typescript.svg",
+  TypeScript: "/assets/tech/typescript.svg",
   Streamlit: "/assets/tech/streamlit.svg",
   Flask: "/assets/tech/flask.svg",
   Laravel: "/assets/tech/laravel.svg",
@@ -246,8 +261,9 @@ export default function Portfolio() {
                 Software Engineer
               </h2>
               <p className="text-muted-foreground dark:text-slate-300 max-w-md mb-8">
-                I enjoy building reliable, production grade products that make
-                people&apos;s work faster and decisions smarter.
+                I build production web applications, AI document workflows and
+                financial data integrations. Hands-on from planning and team
+                coordination to deployment and production support.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -342,27 +358,25 @@ export default function Portfolio() {
             {/* About Me */}
             <div>
               <p className="text-muted-foreground dark:text-slate-100 mb-4">
-                Software engineer with 5+ years of experience building scalable
-                systems (ERPs, Fintech, SaaS, B2B), AI Agents and data
-                pipelines. I enjoy turning messy, real-world workflows into
-                reliable, production-grade products, ranging from
-                straightforward internal tools to complex systems with
-                automation, analytics, and strong operational reliability.
+                I&apos;m a software engineer with about five years of experience
+                across manufacturing, financial software and internal business
+                tools. My main stack is Python, Django, React, TypeScript and SQL.
+                I enjoy understanding how people work and building software that
+                makes their daily tasks easier.
               </p>
               <p className="text-muted-foreground dark:text-slate-100 mb-4">
-                Recently, I&apos;ve been working on AI Agent systems, automation
-                and instant quoting price prediction with ML, 3D geometry
-                visualization, workflow orchestration with LangGraph,
-                observability, and shipping both backend services and
-                React/TypeScript product experiences. I care a lot about clean
-                architecture, measurable performance, and systems that are easy
-                to operate in production.
+                At radii., I led quotation delivery by assigning tasks,
+                supervising progress, implementing features and checking the
+                results. I also independently built production PDF redaction and
+                LangGraph manufacturing-document workflows, and configured cloud
+                resources and container delivery on Azure and AWS.
               </p>
               <p className="text-muted-foreground dark:text-slate-100 mb-4">
-                I got into technology in college through web development and
-                never stopped what still hooks me is breaking down complex
-                problems and shipping solutions that make people&apos;s work
-                faster and decisions smarter.
+                Previously, at Athena Systems, I worked directly with clients and
+                providers in English to implement financial-data integrations and
+                investigate reconciliation issues. I use Codex and Claude Code
+                for planning, test design, implementation and review, followed by
+                my own checks.
               </p>
             </div>
 
@@ -371,7 +385,7 @@ export default function Portfolio() {
               <Card className="text-center p-4 dark:bg-slate-800 dark:border-slate-700 w-full shadow-md">
                 <CardContent className="pt-5">
                   <h3 className="text-2xl font-bold mb-6 dark:text-white text-center">
-                    Hard Skills
+                    Technical Skills
                   </h3>
 
                   <div className="flex flex-wrap justify-center gap-x-6 gap-y-6">
@@ -379,7 +393,7 @@ export default function Portfolio() {
                       { src: "/assets/tech/python.svg", label: "Python" },
                       { src: "/assets/tech/django.svg", label: "Django" },
                       {
-                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+                        src: tagIcons.FastAPI,
                         label: "FastAPI",
                       },
                       { src: "/assets/tech/react.svg", label: "React" },
@@ -401,6 +415,9 @@ export default function Portfolio() {
                         label: "Supabase",
                       },
                       { src: "/assets/tech/azure.svg", label: "Azure" },
+                      { src: tagIcons.AWS, label: "AWS" },
+                      { src: tagIcons.Git, label: "Git" },
+                      { src: tagIcons.LangGraph, label: "LangGraph" },
                       {
                         src: "/assets/tech/google-cloud.svg",
                         label: "Google Cloud",
@@ -472,7 +489,7 @@ export default function Portfolio() {
                   <CardContent className="p-4">
                     <p className="text-4xl font-bold text-primary mb-2">5+</p>
                     <p className="text-muted-foreground dark:text-slate-300">
-                      Years Experience
+                      Years across software and data
                     </p>
                   </CardContent>
                 </Card>
@@ -497,27 +514,25 @@ export default function Portfolio() {
                   period: "Jan 2025 - Present",
                   isCurrent: true,
                   description:
-                    "Full-time remote role at a manufacturing technology company in Querétaro, Mexico. Building fullstack services.",
+                    "Manufacturing software, from customer-facing quotations to AI document processing, data modeling and cloud operations.",
                   responsibilities: [
-                    "Built and maintained Django backend APIs end-to-end (models, serializers, views/viewsets, permissions, validation) with clean contracts and reliable error handling",
-                    "Led planning and collaboration across multiple projects: scoping, prioritization, reviews, and cross-team coordination",
-                    "Designed and operated an event-driven cloud architecture on Azure (containers, queues, storage) with retries, idempotency, and clear execution states",
-                    "Added production observability (metrics, tracing, dashboards, alerts) and led debugging of high-impact issues to improve uptime and developer velocity",
-                    "Architected a React UI instant quoting system supporting drag-and-drop CAD file uploads, real-time price calculation with async job polling, and a checkout flow integrating shipping/billing address management and PDF quote generation",
-                    "Built and scaled backend microservices, including APIs, long-running job processing, and production-grade reliability patterns",
-                    "Designed and optimized PostgreSQL data models and pipelines to store processed results, extracted features, and pricing outputs enabling analytics and ML-ready datasets",
-                    "Implemented CI/CD with GitHub Actions + Docker to build, test, and deploy services to Azure Container Apps (ACR), improving release speed and consistency across environments",
+                    "Led React and Django/DRF quotation delivery: assigned tasks, supervised coworkers, implemented features and checked results across CAD uploads, pricing, review and checkout.",
+                    "Independently built PDF redaction and a LangGraph PPAP workflow used by operations. Estimated complete-report preparation fell from a working day to three minutes or less.",
+                    "Redesigned CAD processing with Azure Service Bus and Container Apps, supporting up to 35 concurrent jobs per worker replica.",
+                    "Provisioned Azure resources, identities, scoped permissions and secrets; wrote GitHub Actions workflows for validation and Docker image delivery through ACR to Container Apps.",
+                    "Deployed LogoDetection on AWS using ECR/ECS and CloudWatch; configured S3 file permissions and expiring download links, and cleaned up unused Azure resources.",
+                    "Normalized PostgreSQL quotation/order relationships with staged migrations and backfills. Diagnosed N+1 queries with Scout APM, reducing Orders page loading from 4.4 seconds to one.",
+                    "Deployed models and configured endpoints through Microsoft Foundry. Investigated processing timeouts and memory failures using job logs, Azure alerts, Papertrail and Heroku.",
                   ],
                   skills: [
                     "Python",
                     "Django",
-                    "Express.js",
                     "Azure",
+                    "AWS",
                     "PostgreSQL",
                     "LangGraph",
                     "Docker",
                     "React",
-                    "Machine Learning",
                     "GitHub Actions",
                   ],
                 },
@@ -526,22 +541,19 @@ export default function Portfolio() {
                   company: "Athena Systems",
                   period: "Oct 2023 - Jan 2025",
                   description:
-                    "Started as a Support Engineer and was promoted within 3 months for demonstrating development talent. Worked on implementing financial software solutions for private investment funds.",
+                    "Financial software for investment clients. Started in support and moved into software engineering responsibilities within approximately three months, working directly with clients and providers in English.",
                   responsibilities: [
-                    "Created client interfaces and implemented new client requirements",
-                    "Performed data cleaning and transformation for tens of thousands of transaction records",
-                    "Developed internal tools using Python and Flask to improve support team efficiency",
-                    "Worked extensively with SQL Server stored procedures for backend implementations",
-                    "Mentored junior engineers and conducted code reviews",
-                    "Collaborated with cross-functional teams to accelerate joint deliverables",
-                    "Created monitoring alerts for daily client processes",
+                    "Owned provider requirements, historical loads and daily ingestion with Python, PowerShell, SQL Server, FIX transactions, XML mappings and CSV reports over FTP/SFTP.",
+                    "Built reconciliation procedures, views and functions; transformed and validated 10,000+ transaction records and investigated missing activity, duplicates and account discrepancies.",
+                    "Resolved a doubled account total by tracing an unexpected provider summary row, correcting filtering rules and explaining the cause and fix in a client postmortem.",
+                    "Built a Flask/ORM interface for repetitive database tasks. Used Bloomberg Terminal/Desktop API to investigate missing security identifiers and price data.",
+                    "Troubleshot Athena Spark through application logs, SQL records and incoming files; communicated findings in English, mentored junior engineers and reviewed code.",
                   ],
                   skills: [
                     "Python",
                     "Flask",
                     "SQL Server",
-                    "ETL",
-                    "FIX Protocol",
+                    "PowerShell",
                   ],
                 },
                 {
@@ -618,7 +630,7 @@ export default function Portfolio() {
                     </p>
                     <div className="mb-4">
                       <h4 className="font-semibold mb-2 dark:text-white">
-                        Key Responsibilities:
+                        Selected work
                       </h4>
                       <ul className="list-disc pl-5 text-muted-foreground dark:text-slate-100 space-y-1">
                         {job.responsibilities.map((item, itemIndex) => (
@@ -671,23 +683,71 @@ export default function Portfolio() {
               {
                 title: "radii. instant quoting platform",
                 description:
-                  "Built core components of a B2B platform that gives manufacturers instant pricing on custom parts from uploaded CAD files. Designed and shipped a Three.js 3D viewer with DFM analysis overlays, drag-and-drop multi-file upload, async pricing via job polling backed by Django services on an event-driven Azure architecture with LangGraph workflow orchestration.",
+                  "Led delivery of a manufacturing quotation flow across React and Django: assigned tasks, supervised progress, implemented features and checked the team's results, from CAD uploads to pricing, review and checkout.",
                 image: "/assets/DFM.webp?height=400&width=600",
                 tags: [
                   "Python",
                   "Django",
-                  "Express.js",
                   "PostgreSQL",
                   "Azure",
                   "React",
                   "Typescript",
                   "Three.js",
-                  "LangGraph",
                   "Docker",
                   "Github Actions",
                 ],
                 websiteUrl: "https://www.radii.com.mx/en",
                 websiteLogo: "/assets/radii_logo.webp",
+                isPrivate: true,
+                caseStudy: {
+                  problem: "Customers needed a connected flow from uploaded CAD files to a usable quotation, with clear status while long-running processing finished.",
+                  contribution: "Led the implementation, split work into tasks for coworkers, supervised delivery, coded features and checked results. This was shared team delivery, alongside my ownership of the CAD processing redesign and database improvements.",
+                  implementation: "React interfaces and Django/DRF APIs connect uploads, job-status polling, pricing, manual review, checkout, addresses and PDF quotes. Three.js supports CAD/DFM visualization. Azure Service Bus and Container Apps handle asynchronous CAD work, with up to 35 concurrent jobs per worker replica.",
+                  validation: "Checked the implemented workflows and investigated slow or failed jobs through application states and logs. Used Scout APM to identify N+1 queries, then optimized Django related-data loading.",
+                  outcome: "Shipped a production quotation workflow, preserved historical relationships through PostgreSQL migrations and backfills, and reduced Orders page loading from 4.4 seconds to one.",
+                },
+              },
+              {
+                title: "LogoDetection: PDF redaction",
+                description: "Independently designed and shipped a system to identify and remove company logos and sensitive content from manufacturing PDFs, combining OCR, model classification and configurable rules.",
+                workflow: "redaction" as const,
+                tags: ["Python", "FastAPI", "Azure", "AWS", "Docker"],
+                isPrivate: true,
+                caseStudy: {
+                  problem: "Manufacturing documents needed company logos and sensitive details removed while retaining useful technical information.",
+                  contribution: "Designed and implemented the solution end to end, including detection rules, model integration, redaction behavior, manual evaluation and worker deployment.",
+                  implementation: "Python/FastAPI processing combines Azure Document Intelligence OCR, text and spatial rules, Azure OpenAI classification and configurable PDF redaction policies. Deployed a worker through GitHub Actions to AWS ECR/ECS, with CloudWatch logs and alarms.",
+                  validation: "Manually reviewed what was removed, missed or preserved and why, then adjusted rules and bounding boxes. Added a reference list of clients and prospects when ambiguous company names confused classification.",
+                  outcome: "Used in the production document workflow, with iterative manual evaluation to refine detection and preserve useful technical content.",
+                },
+              },
+              {
+                title: "PPAP manufacturing document automation",
+                description: "Independently built a LangGraph workflow used by operations to generate manufacturing reports. Estimated preparation time fell from a working day to three minutes or less per complete report.",
+                workflow: "ppap" as const,
+                tags: ["Python", "LangGraph", "Azure", "Django"],
+                isPrivate: true,
+                caseStudy: {
+                  problem: "Operations staff manually prepared flowcharts, PFMEA and Control Plan documents from technical drawings. A complete report could take a working day.",
+                  contribution: "Built the workflow individually. Learned the requirements by reviewing examples and talking with operations colleagues about how they prepared the reports.",
+                  implementation: "A LangGraph workflow performs structured extraction, generates the flowchart and analysis documents, and checks consistency before producing Excel/PDF outputs. Service Bus, Blob Storage and Django callbacks connect it to the application. Also deployed models and configured endpoints through Microsoft Foundry.",
+                  validation: "Used the team's examples and requirements to guide output review, with cross-document consistency checks in the workflow. Operations colleagues used it on real work requests.",
+                  outcome: "Operations staff used the workflow for real requests. Based on my observations, complete-report preparation fell from a working day to three minutes or less.",
+                },
+              },
+              {
+                title: "Financial data integration and reconciliation",
+                description: "Owned client/provider coordination, historical loads and daily financial-data processing at Athena Systems. Traced a doubled account total to a changed provider file and corrected the ingestion rules.",
+                workflow: "reconciliation" as const,
+                tags: ["Python", "PowerShell", "SQL Server"],
+                isPrivate: true,
+                caseStudy: {
+                  problem: "Athena's financial application needed historical and daily provider data to match the transaction activity and account totals shown to clients.",
+                  contribution: "Coordinated fields and requirements directly with clients and providers in English, built ingestion and reconciliation flows, investigated discrepancies and communicated findings.",
+                  implementation: "Python, PowerShell and SQL Server supported historical loads. Daily FIX transaction feeds and separate provider CSV reports over FTP/SFTP were processed using XML mappings, transformations and stored procedures, views and functions for reconciliation.",
+                  validation: "Compared raw files, loaded records and reconciliation reports for missing activity, duplicate records, unexpected accounts and incorrect totals. Transformed and validated more than 10,000 transaction records.",
+                  outcome: "Resolved a doubled account total caused by an unannounced CSV summary row. Added required-field filtering to exclude summary records, checked the corrected balance and sent the client a postmortem.",
+                },
               },
               {
                 title: "YouTube Outlier Research Platform",
@@ -735,7 +795,7 @@ export default function Portfolio() {
               {
                 title: "AI Video Production Factory",
                 description:
-                  "Multi-agent AI video production pipeline that turns a topic into a YouTube-ready package: channel-aware planning, script generation, visual sourcing, TTS narration, Remotion rendering, thumbnails, review gates, cost traces, and final MP4 assembly.",
+                  "Personal research-to-video workflow using Google Cloud and Gemini for AI processing, ElevenLabs narration, visual sourcing, Remotion rendering and FFmpeg assembly. Includes checkpoints, retries, validation feedback and cost tracking.",
                 image:
                   "/assets/video-factory-remotion.png?height=400&width=600",
                 imagePosition: "object-bottom",
@@ -892,11 +952,12 @@ export default function Portfolio() {
               {
                 title: "Athena Support Operations Tool",
                 description:
-                  "Internal web application that reduced average support ticket resolution time by 30% by providing safe in-app data correction tools, validation workflows, and faster operational visibility for support engineers.",
+                  "Built a Flask/ORM interface to simplify repetitive database operations during client support. I informally estimated about 30% less time on my recurring tasks; team benefits were qualitative, not a measured ticket-resolution KPI.",
                 image: "/assets/athena.png?height=400&width=600",
                 tags: ["Python", "Flask", "MSSQL"],
                 websiteUrl: "https://www.athenasystems.com/",
                 websiteLogo: "/assets/athenaSystems.png",
+                isPrivate: true,
               },
               {
                 title: "YalaharBot",
@@ -931,6 +992,7 @@ export default function Portfolio() {
                   "https://github.com/NesDevr/sales-management-system-laravel-livewire",
               },
             ]
+              .filter((project: Project) => !project.workflow)
               .filter(
                 (_project: Project, index) => showAllProjects || index < 6,
               )
@@ -944,6 +1006,7 @@ export default function Portfolio() {
                   setSelectedProject(project);
                 }}
                 onKeyDown={(event) => {
+                  if (event.target !== event.currentTarget) return;
                   if (event.key === "Enter" || event.key === " ") {
                     event.preventDefault();
                     setSelectedScreenshotIndex(0);
@@ -953,14 +1016,21 @@ export default function Portfolio() {
                 className="animate-in fade-in slide-in-from-bottom-3 overflow-hidden duration-300 dark:bg-slate-800 dark:border-slate-700 cursor-pointer transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-900"
               >
                 <div className="relative h-44 bg-slate-950">
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    fill
-                    className={`object-cover ${project.imagePosition ?? ""}`}
-                  />
+                  {project.workflow ? (
+                    <WorkflowPreview kind={project.workflow} />
+                  ) : (
+                    <Image
+                      src={project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      fill
+                      className={`object-cover ${project.imagePosition ?? ""}`}
+                    />
+                  )}
                 </div>
                 <CardContent className="p-5">
+                  <p className="mb-2 text-xs font-medium uppercase tracking-wider text-primary">
+                    {project.isPrivate ? "Professional work" : "Personal project"}
+                  </p>
                   <h3 className="text-lg font-bold mb-2 dark:text-white">
                     {project.title}
                   </h3>
@@ -1179,10 +1249,12 @@ export default function Portfolio() {
                           </div>
                       )}
                     </div>
+                  ) : selectedProject.workflow ? (
+                    <WorkflowPreview kind={selectedProject.workflow} expanded />
                   ) : (
                     <div className="relative min-h-[280px] bg-slate-950 sm:min-h-[420px]">
                       <Image
-                        src={selectedProject.image}
+                        src={selectedProject.image || "/placeholder.svg"}
                         alt={selectedProject.title}
                         fill
                         className="object-contain"
@@ -1198,6 +1270,22 @@ export default function Portfolio() {
                         {selectedProject.description}
                       </DialogDescription>
                     </DialogHeader>
+                    {selectedProject.caseStudy && (
+                      <dl className="grid gap-5 border-y border-slate-700 py-5 sm:grid-cols-2">
+                        {[
+                          ["The problem", selectedProject.caseStudy.problem],
+                          ["My contribution", selectedProject.caseStudy.contribution],
+                          ["How it works", selectedProject.caseStudy.implementation],
+                          ["How I checked it", selectedProject.caseStudy.validation],
+                          ["The result", selectedProject.caseStudy.outcome],
+                        ].map(([label, text]) => (
+                          <div key={label} className={label === "The result" ? "sm:col-span-2" : ""}>
+                            <dt className="mb-2 text-sm font-semibold text-primary">{label}</dt>
+                            <dd className="text-sm leading-6 text-slate-300">{text}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                    )}
                     <div className="flex flex-wrap gap-2">
                       {selectedProject.tags.map((tag, tagIndex) => {
                         const tagIcon = tagIcons[tag];
@@ -1293,18 +1381,11 @@ export default function Portfolio() {
           <div className="space-y-8 max-w-3xl mx-auto text-lg">
             {[
               {
-                degree: "Bachelor’s Degree in Industrial Engineering",
+                degree: "Bachelor's Degree in Software Engineering",
                 institution: "Instituto Tecnológico de Ciudad Madero",
                 period: "2018 - 2023",
                 description:
-                  "Focused on quality engineering solutions, industrial adaptability, data-driven decision-making, and improving business profitability.",
-              },
-              {
-                degree: "Computer Science Engineering",
-                institution: "Instituto Tecnológico de Ciudad Madero",
-                period: "2017 - 2018",
-                description:
-                  "Foundation year focused on core principles of computer science including logic, programming, and system analysis.",
+                  "Completed degree. Spanish: native. English: advanced professional proficiency.",
               },
             ].map((edu, index) => (
               <Card

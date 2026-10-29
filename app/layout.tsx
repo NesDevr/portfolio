@@ -5,8 +5,8 @@ import { ThemeScript } from "./theme-script";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
-  title: "Nes Portfolio",
-  description: "Nestor Garcia Portfolio web",
+  title: "Nestor Garcia | Software Engineer",
+  description: "Software engineer building production web applications, AI document workflows and financial data integrations with Python, React, SQL, Azure and AWS.",
 };
 
 export default function RootLayout({
