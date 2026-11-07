@@ -267,7 +267,7 @@ export default function Portfolio() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="/assets/NestorGarciaCV.pdf"
+                  href="/assets/Nestor_Garcia_Software_Engineer.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   download
