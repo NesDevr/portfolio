@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Nestor Garcia | Software Engineer",
-  description: "Software engineer building production web applications, AI document workflows and financial data integrations with Python, React, SQL, Azure and AWS.",
+  description: "Software engineer building production web applications, AI assistants, manufacturing cost prediction and financial data integrations with Python, React, Node.js, Azure and AWS.",
 };
 
 export default function RootLayout({

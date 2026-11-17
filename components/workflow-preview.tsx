@@ -5,6 +5,38 @@ import {
 } from "lucide-react";
 
 const workflows = {
+  assistant: {
+    label: "Manufacturing AI assistant", color: "#287aa1", tint: "#e7f3f8",
+    stages: [
+      { label: "Customer request", detail: "Chat + context", icon: Files },
+      { label: "Retrieve + plan", detail: "Documents + graph", icon: Network },
+      { label: "Validated tools", detail: "Permissions + confirmation", icon: ShieldCheck },
+    ],
+  },
+  pricing: {
+    label: "Manufacturing cost prediction", color: "#a66c24", tint: "#fbf0df",
+    stages: [
+      { label: "CAD + parameters", detail: "Geometry + material", icon: DraftingCompass },
+      { label: "ML prediction", detail: "PyTorch + XGBoost", icon: Network },
+      { label: "Cost + review", detail: "Flag unusual estimates", icon: ListChecks },
+    ],
+  },
+  infrastructure: {
+    label: "Production Kubernetes delivery", color: "#287aa1", tint: "#e7f3f8",
+    stages: [
+      { label: "Build + validate", detail: "GitHub Actions + Docker", icon: ListChecks },
+      { label: "AKS workloads", detail: "Terraform + Kubernetes", icon: Network },
+      { label: "Health + metrics", detail: "Probes + monitoring", icon: ScanSearch },
+    ],
+  },
+  analytics: {
+    label: "Manufacturing analytics pipeline", color: "#527a43", tint: "#edf4e7",
+    stages: [
+      { label: "Bronze", detail: "Raw manufacturing records", icon: Database },
+      { label: "Silver", detail: "Clean + validate", icon: SlidersHorizontal },
+      { label: "Gold", detail: "SQL analytics + dashboards", icon: ListChecks },
+    ],
+  },
   redaction: {
     label: "Document intelligence", color: "#287aa1", tint: "#e7f3f8",
     stages: [

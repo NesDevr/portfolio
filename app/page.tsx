@@ -28,6 +28,7 @@ import {
 
 type Project = {
   title: string;
+  hidden?: boolean;
   description: string;
   image?: string;
   imagePosition?: string;
@@ -42,6 +43,7 @@ type Project = {
   websiteUrl?: string;
   websiteLogo?: string;
   isPrivate?: boolean;
+  context?: string;
   workflow?: WorkflowKind;
   caseStudy?: {
     problem: string;
@@ -57,6 +59,13 @@ const tagIcons: Record<string, string> = {
   AWS: "/assets/tech/aws.svg",
   Git: "/assets/tech/git.svg",
   FastAPI: "/assets/tech/fastapi.svg",
+  "Node.js": "/assets/tech/nodejs.svg",
+  Kubernetes: "/assets/tech/kubernetes.svg",
+  Terraform: "/assets/tech/terraform.svg",
+  PyTorch: "/assets/tech/pytorch.svg",
+  "scikit-learn": "/assets/tech/scikitlearn.svg",
+  Databricks: "/assets/tech/databricks.svg",
+  "Apache Spark": "/assets/tech/apache-spark.svg",
   PowerShell: "/assets/tech/powershell.svg",
   Django: "/assets/tech/django.svg",
   PostgreSQL: "/assets/tech/postgresql.svg",
@@ -105,7 +114,43 @@ const tagIcons: Record<string, string> = {
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg",
   IndexedDB: "/assets/tech/indexeddb.svg",
   Electron: "/assets/tech/electron.svg",
+  "Power BI": "/assets/tech/power-bi.svg",
+  Excel: "/assets/tech/excel.svg",
+  Grafana: "/assets/tech/grafana.svg",
+  XGBoost: "/assets/tech/xgboost.png",
+  "Delta Lake": "/assets/tech/delta-lake.svg",
+  Postman: "/assets/tech/postman.svg",
+  "Azure AI Foundry": "/assets/tech/azure.svg",
+  Codex: "/assets/tech/codex.svg",
+  "Claude Code": "/assets/tech/claude-code.svg",
 };
+
+const skillGroups = [
+  {
+    title: "Backend",
+    skills: ["Python", "Django", "Django REST", "FastAPI", "Node.js", "Express.js", "Flask", "PHP", "Laravel"],
+  },
+  {
+    title: "Frontend",
+    skills: ["JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "Three.js", "Livewire"],
+  },
+  {
+    title: "Data & analytics",
+    skills: ["PostgreSQL", "SQL Server", "MySQL", "Supabase", "Databricks", "Apache Spark", "Delta Lake", "Power BI", "Excel"],
+  },
+  {
+    title: "AI & machine learning",
+    skills: ["LangChain", "LangGraph", "Azure AI Foundry", "PyTorch", "XGBoost", "scikit-learn", "Gemini"],
+  },
+  {
+    title: "Cloud & infrastructure",
+    skills: ["Azure", "AWS", "Google Cloud", "Docker", "Kubernetes", "Terraform", "Grafana"],
+  },
+  {
+    title: "Delivery & testing",
+    skills: ["Git", "GitHub Actions", "Postman", "PowerShell", "Codex", "Claude Code"],
+  },
+];
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
@@ -360,16 +405,18 @@ export default function Portfolio() {
               <p className="text-muted-foreground dark:text-slate-100 mb-4">
                 I&apos;m a software engineer with about five years of experience
                 across manufacturing, financial software and internal business
-                tools. My main stack is Python, Django, React, TypeScript and SQL.
+                tools. My main stack is Python, Django, React, TypeScript, Node.js
+                and SQL.
                 I enjoy understanding how people work and building software that
                 makes their daily tasks easier.
               </p>
               <p className="text-muted-foreground dark:text-slate-100 mb-4">
                 At radii., I led quotation delivery by assigning tasks,
                 supervising progress, implementing features and checking the
-                results. I also independently built production PDF redaction and
-                LangGraph manufacturing-document workflows, and configured cloud
-                resources and container delivery on Azure and AWS.
+                results. I built a manufacturing AI assistant, ML-based cost
+                prediction, production PDF redaction and LangGraph document
+                workflows. I also managed cloud resources and container delivery
+                on Azure and AWS, including production Kubernetes workloads.
               </p>
               <p className="text-muted-foreground dark:text-slate-100 mb-4">
                 Previously, at Athena Systems, I worked directly with clients and
@@ -382,75 +429,36 @@ export default function Portfolio() {
 
             <div className="grid md:grid-cols-2 gap-6 mb-12 items-start">
               {/* Columna Izquierda - Hard Skills */}
-              <Card className="text-center p-4 dark:bg-slate-800 dark:border-slate-700 w-full shadow-md">
-                <CardContent className="pt-5">
-                  <h3 className="text-2xl font-bold mb-6 dark:text-white text-center">
+              <Card className="text-center dark:bg-slate-800 dark:border-slate-700 w-full shadow-md md:col-span-2">
+                <CardContent className="p-4 sm:p-5">
+                  <h3 className="text-xl font-bold mb-4 dark:text-white text-center">
                     Technical Skills
                   </h3>
 
-                  <div className="flex flex-wrap justify-center gap-x-6 gap-y-6">
-                    {[
-                      { src: "/assets/tech/python.svg", label: "Python" },
-                      { src: "/assets/tech/django.svg", label: "Django" },
-                      {
-                        src: tagIcons.FastAPI,
-                        label: "FastAPI",
-                      },
-                      { src: "/assets/tech/react.svg", label: "React" },
-                      { src: "/assets/tech/nextjs.svg", label: "Next.js" },
-                      {
-                        src: "/assets/tech/typescript.svg",
-                        label: "TypeScript",
-                      },
-                      {
-                        src: "/assets/tech/postgresql.svg",
-                        label: "PostgreSQL",
-                      },
-                      {
-                        src: "/assets/tech/sql-server.svg",
-                        label: "SQL Server",
-                      },
-                      {
-                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
-                        label: "Supabase",
-                      },
-                      { src: "/assets/tech/azure.svg", label: "Azure" },
-                      { src: tagIcons.AWS, label: "AWS" },
-                      { src: tagIcons.Git, label: "Git" },
-                      { src: tagIcons.LangGraph, label: "LangGraph" },
-                      {
-                        src: "/assets/tech/google-cloud.svg",
-                        label: "Google Cloud",
-                      },
-                      { src: "/assets/tech/docker.svg", label: "Docker" },
-                      {
-                        src: "/assets/tech/github-actions.svg",
-                        label: "GitHub Actions",
-                      },
-                      {
-                        src: "https://avatars.githubusercontent.com/u/126733545?s=200&v=4",
-                        label: "LangChain",
-                      },
-                      {
-                        src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-                        label: "Express.js",
-                      },
-                    ].map((skill, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col items-center w-20 space-y-2 transition-transform duration-200 hover:scale-105"
-                      >
-                        <Image
-                          src={skill.src}
-                          alt={skill.label}
-                          width={40}
-                          height={40}
-                          unoptimized
-                          className="h-10 w-10 object-contain"
-                        />
-                        <span className="text-sm font-medium text-muted-foreground dark:text-slate-300 text-center">
-                          {skill.label}
-                        </span>
+                  <div className="grid gap-x-6 gap-y-4 text-left md:grid-cols-2 xl:grid-cols-3">
+                    {skillGroups.map((group) => (
+                      <div key={group.title}>
+                        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground dark:text-slate-400">
+                          {group.title}
+                        </h4>
+                        <ul className="flex flex-wrap gap-1.5" aria-label={group.title}>
+                          {group.skills.map((skill) => (
+                            <li
+                              key={skill}
+                              className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-xs leading-5 text-slate-700 dark:border-slate-700 dark:bg-slate-900/50 dark:text-slate-200"
+                            >
+                              <Image
+                                src={tagIcons[skill]}
+                                alt=""
+                                width={16}
+                                height={16}
+                                unoptimized
+                                className={`h-4 w-4 shrink-0 object-contain ${["Express.js", "Three.js", "LangGraph"].includes(skill) ? "dark:brightness-0 dark:invert" : ""}`}
+                              />
+                              {skill}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     ))}
                   </div>
@@ -458,7 +466,7 @@ export default function Portfolio() {
               </Card>
 
               {/* Columna Derecha - Soft Skills + Experience */}
-              <div className="flex flex-col gap-3 w-full h-full">
+              <div className="grid gap-3 w-full md:col-span-2 md:grid-cols-2">
                 {/* Soft Skills */}
                 <Card className="dark:bg-slate-800 dark:border-slate-700 w-full shadow-md flex-1 flex flex-col justify-center">
                   <CardContent className="p-4">
@@ -514,23 +522,41 @@ export default function Portfolio() {
                   period: "Jan 2025 - Present",
                   isCurrent: true,
                   description:
-                    "Manufacturing software, from customer-facing quotations to AI document processing, data modeling and cloud operations.",
+                    "Manufacturing software, from customer-facing quotations to AI assistants, cost prediction, document processing and cloud operations.",
                   responsibilities: [
                     "Led React and Django/DRF quotation delivery: assigned tasks, supervised coworkers, implemented features and checked results across CAD uploads, pricing, review and checkout.",
-                    "Independently built PDF redaction and a LangGraph PPAP workflow used by operations. Estimated complete-report preparation fell from a working day to three minutes or less.",
-                    "Redesigned CAD processing with Azure Service Bus and Container Apps, supporting up to 35 concurrent jobs per worker replica.",
-                    "Provisioned Azure resources, identities, scoped permissions and secrets; wrote GitHub Actions workflows for validation and Docker image delivery through ACR to Container Apps.",
+                    "Independently built PDF redaction and a LangGraph PPAP workflow used by operations. Estimated complete-report preparation fell from a working day to five minutes or less.",
+                    "Built the FastAPI-based CAD-processing service and redesigned asynchronous processing with Azure Service Bus and Container Apps, supporting up to 35 concurrent jobs per worker replica.",
+                    "Built a LangChain/LangGraph manufacturing assistant with Azure OpenAI, Django APIs and PostgreSQL/pgvector for technical retrieval and permission-checked quotation actions.",
+                    "Replaced deterministic cost estimation with an ML pricing engine using PyTorch geometry features and XGBoost regression, with scikit-learn evaluation and FastAPI inference.",
+                    "Built Databricks ETL pipelines using real manufacturing datasets, with PySpark, bronze/silver/gold Delta tables, scheduled ingestion, data-quality checks and SQL dashboards.",
+                    "Designed and implemented a Node.js LogoDetection worker on AWS, combining OCR, LLM classification and configurable PDF redaction policies.",
+                    "Managed production Kubernetes workloads on Azure with Terraform, including health probes, secrets, resource limits and rolling updates; used Grafana for monitoring dashboards.",
+                    "Built GitHub Actions CI/CD pipelines for automated tests, linting, Docker image builds, publishing to Azure Container Registry and deployment to Azure Container Apps; configured cloud resources, scoped identities, permissions and secrets.",
                     "Deployed LogoDetection on AWS using ECR/ECS and CloudWatch; configured S3 file permissions and expiring download links, and cleaned up unused Azure resources.",
                     "Normalized PostgreSQL quotation/order relationships with staged migrations and backfills. Diagnosed N+1 queries with Scout APM, reducing Orders page loading from 4.4 seconds to one.",
                     "Deployed models and configured endpoints through Microsoft Foundry. Investigated processing timeouts and memory failures using job logs, Azure alerts, Papertrail and Heroku.",
                   ],
                   skills: [
                     "Python",
+                    "Node.js",
+                    "FastAPI",
                     "Django",
                     "Azure",
                     "AWS",
                     "PostgreSQL",
                     "LangGraph",
+                    "PyTorch",
+                    "XGBoost",
+                    "LangChain",
+                    "Azure AI Foundry",
+                    "Kubernetes",
+                    "Terraform",
+                    "Databricks",
+                    "Apache Spark",
+                    "Delta Lake",
+                    "Grafana",
+                    "Postman",
                     "Docker",
                     "React",
                     "GitHub Actions",
@@ -557,32 +583,18 @@ export default function Portfolio() {
                   ],
                 },
                 {
-                  role: "Full Stack Developer",
-                  company: "Inprosa",
-                  period: "Jan 2023 - Sep 2023",
-                  description:
-                    "Contributed to the initial phase of an internal football/soccer project, developing core modules.",
-                  responsibilities: [
-                    "Developed user management modules with role-based permissions",
-                    "Implemented tournament management systems",
-                    "Used Laravel, Livewire, and SQL for full-stack development",
-                    "Built modular components for future project scalability",
-                  ],
-                  skills: ["Laravel", "Livewire", "PHP", "MySQL", "JavaScript"],
-                },
-                {
-                  role: "Web Developer / Data Analyst",
+                  role: "Full Stack Developer / Data Analyst",
                   company: "Fort Group",
-                  period: "Oct 2021 - Dec 2022",
+                  period: "Oct 2021 - Sep 2023",
                   description:
-                    "Supported ERP development and provided data-driven insights for company operations.",
+                    "Built internal applications and reporting workflows, combining full-stack development with operational data analysis.",
                   responsibilities: [
-                    "Developed an ERP system using Laravel, SQL, and Livewire for internal management",
-                    "Managed data systems for truck fleet, invoices, and employee performance",
-                    "Analyzed operational data using Python, SQL, Excel, and Power BI",
-                    "Delivered actionable business insights from complex datasets",
+                    "Developed Laravel/Livewire ERP modules for fleet, tires, maintenance, invoicing and employee-performance workflows, using PHP, JavaScript and MySQL.",
+                    "Built user management, role-based permissions, tournament workflows and reusable interface components.",
+                    "Gathered requirements from operational staff and designed relational models to support their workflows.",
+                    "Maintained Python/SQL ETL and reporting workflows, with Excel and Power BI dashboards for operational analysis.",
                   ],
-                  skills: ["Laravel", "Python", "MySQL", "Power BI", "Excel"],
+                  skills: ["Laravel", "Livewire", "PHP", "JavaScript", "Python", "MySQL", "Power BI", "Excel"],
                 },
               ].map((job, index) => (
                 <div key={index} className="relative">
@@ -683,7 +695,7 @@ export default function Portfolio() {
               {
                 title: "radii. instant quoting platform",
                 description:
-                  "Led delivery of a manufacturing quotation flow across React and Django: assigned tasks, supervised progress, implemented features and checked the team's results, from CAD uploads to pricing, review and checkout.",
+                  "Led a manufacturing quotation platform from CAD uploads to pricing, review and checkout. Built across React and Django, with asynchronous CAD processing, an AI assistant and ML-based cost estimation.",
                 image: "/assets/DFM.webp?height=400&width=600",
                 tags: [
                   "Python",
@@ -692,31 +704,28 @@ export default function Portfolio() {
                   "Azure",
                   "React",
                   "Typescript",
-                  "Three.js",
-                  "Docker",
-                  "Github Actions",
                 ],
                 websiteUrl: "https://www.radii.com.mx/en",
                 websiteLogo: "/assets/radii_logo.webp",
                 isPrivate: true,
                 caseStudy: {
                   problem: "Customers needed a connected flow from uploaded CAD files to a usable quotation, with clear status while long-running processing finished.",
-                  contribution: "Led the implementation, split work into tasks for coworkers, supervised delivery, coded features and checked results. This was shared team delivery, alongside my ownership of the CAD processing redesign and database improvements.",
-                  implementation: "React interfaces and Django/DRF APIs connect uploads, job-status polling, pricing, manual review, checkout, addresses and PDF quotes. Three.js supports CAD/DFM visualization. Azure Service Bus and Container Apps handle asynchronous CAD work, with up to 35 concurrent jobs per worker replica.",
-                  validation: "Checked the implemented workflows and investigated slow or failed jobs through application states and logs. Used Scout APM to identify N+1 queries, then optimized Django related-data loading.",
+                  contribution: "Led the implementation, assigned tasks to coworkers, supervised delivery, coded features and checked results. Owned the CAD processing redesign and database improvements, and built the manufacturing AI assistant and ML cost-estimation integrations. The quotation platform was shared team delivery.",
+                  implementation: "React and Django/DRF connect CAD uploads, processing status, pricing, review, checkout and PDF quotes, with Three.js for part visualization. FastAPI, Azure Service Bus and Container Apps handle asynchronous CAD processing, supporting up to 35 concurrent jobs per worker replica. A LangChain/LangGraph assistant uses Azure OpenAI, PostgreSQL/pgvector and validated Django tools to answer technical questions and manage quotations. PyTorch geometry features and XGBoost regression support manufacturing cost estimates.",
+                  validation: "Checked quotation workflows and investigated failed jobs through application states and logs. Added permission checks and confirmation for chat-driven changes; evaluated pricing with MAE, RMSE and unusual-case review. Used Scout APM to identify N+1 queries and optimize Django data loading.",
                   outcome: "Shipped a production quotation workflow, preserved historical relationships through PostgreSQL migrations and backfills, and reduced Orders page loading from 4.4 seconds to one.",
                 },
               },
               {
                 title: "LogoDetection: PDF redaction",
-                description: "Independently designed and shipped a system to identify and remove company logos and sensitive content from manufacturing PDFs, combining OCR, model classification and configurable rules.",
+                description: "Independently designed and implemented a production Node.js worker on AWS to identify and remove company logos and sensitive content from manufacturing PDFs using OCR, model classification and configurable rules.",
                 workflow: "redaction" as const,
-                tags: ["Python", "FastAPI", "Azure", "AWS", "Docker"],
+                tags: ["Node.js", "Azure", "AWS", "Docker"],
                 isPrivate: true,
                 caseStudy: {
                   problem: "Manufacturing documents needed company logos and sensitive details removed while retaining useful technical information.",
-                  contribution: "Designed and implemented the solution end to end, including detection rules, model integration, redaction behavior, manual evaluation and worker deployment.",
-                  implementation: "Python/FastAPI processing combines Azure Document Intelligence OCR, text and spatial rules, Azure OpenAI classification and configurable PDF redaction policies. Deployed a worker through GitHub Actions to AWS ECR/ECS, with CloudWatch logs and alarms.",
+                  contribution: "Designed and implemented the Node.js solution end to end, including detection rules, model integration, redaction behavior, manual evaluation and AWS worker deployment.",
+                  implementation: "The Node.js worker combines Azure Document Intelligence OCR, text and spatial rules, Azure OpenAI classification and configurable PDF redaction policies. Built and deployed Docker images through GitHub Actions and Amazon ECR to ECS, with CloudWatch logs and alarms.",
                   validation: "Manually reviewed what was removed, missed or preserved and why, then adjusted rules and bounding boxes. Added a reference list of clients and prospects when ambiguous company names confused classification.",
                   outcome: "Used in the production document workflow, with iterative manual evaluation to refine detection and preserve useful technical content.",
                 },
@@ -747,6 +756,63 @@ export default function Portfolio() {
                   implementation: "Python, PowerShell and SQL Server supported historical loads. Daily FIX transaction feeds and separate provider CSV reports over FTP/SFTP were processed using XML mappings, transformations and stored procedures, views and functions for reconciliation.",
                   validation: "Compared raw files, loaded records and reconciliation reports for missing activity, duplicate records, unexpected accounts and incorrect totals. Transformed and validated more than 10,000 transaction records.",
                   outcome: "Resolved a doubled account total caused by an unannounced CSV summary row. Added required-field filtering to exclude summary records, checked the corrected balance and sent the client a postmortem.",
+                },
+              },
+              {
+                title: "AI Manufacturing Assistant",
+                description: "Built a conversational assistant for manufacturing quotations and part management, connecting technical-document retrieval with validated actions in the existing radii. application.",
+                workflow: "assistant" as const,
+                tags: ["Python", "Django", "LangChain", "LangGraph", "PostgreSQL", "React", "Azure"],
+                isPrivate: true,
+                caseStudy: {
+                  problem: "Customers needed to find technical information and manage quotation details without moving between separate screens and documents.",
+                  contribution: "Built the assistant's orchestration, document retrieval and quotation API integrations, and connected it to the React application.",
+                  implementation: "LangChain and LangGraph orchestrate Azure OpenAI calls, retrieval over PostgreSQL/pgvector embeddings, and Django/DRF tools. The assistant handles conversational context, reads CAD-processing results and part details, and creates quotations or updates quantities and materials.",
+                  validation: "Added permission checks, input validation and confirmation before quotation changes. Separated document retrieval from tools that modify application records.",
+                  outcome: "Delivered a production chat workflow for technical questions, quotation creation, configuration changes and estimate requests within the manufacturing application.",
+                },
+              },
+              {
+                title: "Intelligent manufacturing pricing",
+                description: "Replaced an earlier deterministic pricing approach with an ML engine combining learned CAD geometry features and structured manufacturing data to predict costs and flag unusual estimates.",
+                workflow: "pricing" as const,
+                tags: ["Python", "PyTorch", "XGBoost", "scikit-learn", "Machine Learning", "FastAPI", "Docker"],
+                isPrivate: true,
+                caseStudy: {
+                  problem: "Manufacturing cost estimation needed to account for geometry, materials, quantities and production parameters beyond the existing deterministic pricing approach.",
+                  contribution: "Built the feature-processing pipeline, PyTorch geometry feature extraction, XGBoost cost regression and FastAPI inference service.",
+                  implementation: "PyTorch extracts numerical features from CAD representations. XGBoost combines these with dimensions, material properties, quantities and manufacturing parameters. pandas, NumPy and scikit-learn support preparation and evaluation; MLflow, serialized models and versioning support repeatable inference.",
+                  validation: "Compared ML estimates with the previous deterministic approach using MAE, RMSE and error analysis across unusual manufacturing cases. Added checks for unusual inputs and predictions requiring manual review.",
+                  outcome: "Delivered an operational ML pricing service that returns predicted manufacturing costs and flags estimates for review, replacing the earlier deterministic approach while retaining it for comparison.",
+                },
+              },
+              {
+                title: "Production container infrastructure on Azure",
+                description: "Managed Django APIs and background workers on Azure Kubernetes Service using Terraform and Kubernetes, with health checks, rolling updates, automated delivery and infrastructure monitoring.",
+                workflow: "infrastructure" as const,
+                tags: ["Azure", "Kubernetes", "Terraform", "Docker", "GitHub Actions"],
+                isPrivate: true,
+                caseStudy: {
+                  problem: "Containerized backend services and workers needed repeatable configuration, controlled releases and operational visibility in production.",
+                  contribution: "Configured and managed production Kubernetes resources on Azure using Terraform, and worked on container delivery and monitoring.",
+                  implementation: "Managed Deployments, Services, namespaces, ConfigMaps and Secrets, with readiness/liveness probes, resource limits and rolling updates. Used GitHub Actions for delivery and Grafana for monitoring dashboards alongside Django services, PostgreSQL and RabbitMQ. This environment is separate from the Azure Container Apps and AWS ECS deployments described in other projects.",
+                  validation: "Used automated testing, image builds and deployment validation in GitHub Actions, health probes and application/infrastructure metrics to check service behavior and releases.",
+                  outcome: "Supported production containerized services with repeatable Kubernetes configuration, monitored workloads and controlled rolling deployments.",
+                },
+              },
+              {
+                title: "Manufacturing analytics with Databricks",
+                description: "Built a Databricks analytics pipeline at radii. using real manufacturing quotation and CAD-processing data, with bronze, silver and gold Delta tables, scheduled batch workflows and SQL dashboards.",
+                context: "Professional work · radii.",
+                isPrivate: true,
+                workflow: "analytics" as const,
+                tags: ["Databricks", "Apache Spark", "Delta Lake", "Python"],
+                caseStudy: {
+                  problem: "Manufacturing quotation records and CAD-processing metrics needed consistent analytical datasets for operational reporting at radii.",
+                  contribution: "Built the ingestion and transformation notebooks, cleaning and validation rules, scheduled workflows and dashboards using real radii. manufacturing datasets.",
+                  implementation: "PySpark and Spark SQL transform CSV/Parquet inputs into bronze, silver and gold Delta Lake tables. Databricks SQL dashboards show quotation volumes, material trends, processing durations and failed-job trends.",
+                  validation: "Applied cleaning and validation rules to quotation records, material specifications and processing metrics; added monitoring to repeatable batch workflows and inspected the resulting SQL analyses and dashboards.",
+                  outcome: "Delivered a manufacturing analytics workflow used at radii., turning real quotation and CAD-processing records into queryable Delta tables and dashboards for operational analysis.",
                 },
               },
               {
@@ -810,7 +876,18 @@ export default function Portfolio() {
                 codeUrl: "https://github.com/NesDevr/video-factory",
               },
               {
+                title: "Athena Support Operations Tool",
+                description:
+                  "Built a Flask/ORM interface to simplify repetitive database operations during client support. I informally estimated about 30% less time on my recurring tasks; team benefits were qualitative, not a measured ticket-resolution KPI.",
+                image: "/assets/athena.png?height=400&width=600",
+                tags: ["Python", "Flask", "MSSQL"],
+                websiteUrl: "https://www.athenasystems.com/",
+                websiteLogo: "/assets/athenaSystems.png",
+                isPrivate: true,
+              },
+              {
                 title: "Coffee Shop Chatbot",
+                hidden: true,
                 description:
                   "Next.js coffee storefront with a floating AI chat widget. Uses LangChain and OpenAI with Supabase vector search to retrieve coffee knowledge before answering customer questions.",
                 image: "/assets/coffee-snapshot.png?height=400&width=600",
@@ -950,16 +1027,6 @@ export default function Portfolio() {
               },
 
               {
-                title: "Athena Support Operations Tool",
-                description:
-                  "Built a Flask/ORM interface to simplify repetitive database operations during client support. I informally estimated about 30% less time on my recurring tasks; team benefits were qualitative, not a measured ticket-resolution KPI.",
-                image: "/assets/athena.png?height=400&width=600",
-                tags: ["Python", "Flask", "MSSQL"],
-                websiteUrl: "https://www.athenasystems.com/",
-                websiteLogo: "/assets/athenaSystems.png",
-                isPrivate: true,
-              },
-              {
                 title: "YalaharBot",
                 description:
                   "Discord automation bot for Tibia servers with hybrid slash/prefix commands, character identity linking, level and death alerts, watched worlds and guilds, leaderboards, a Django REST API, and a Next.js control-panel dashboard.",
@@ -992,7 +1059,7 @@ export default function Portfolio() {
                   "https://github.com/NesDevr/sales-management-system-laravel-livewire",
               },
             ]
-              .filter((project: Project) => !project.workflow)
+              .filter((project: Project) => !project.hidden && Boolean(project.image || project.screenshots?.length))
               .filter(
                 (_project: Project, index) => showAllProjects || index < 6,
               )
@@ -1029,7 +1096,7 @@ export default function Portfolio() {
                 </div>
                 <CardContent className="p-5">
                   <p className="mb-2 text-xs font-medium uppercase tracking-wider text-primary">
-                    {project.isPrivate ? "Professional work" : "Personal project"}
+                    {project.context ?? (project.isPrivate ? "Professional work" : "Personal project")}
                   </p>
                   <h3 className="text-lg font-bold mb-2 dark:text-white">
                     {project.title}
@@ -1263,6 +1330,9 @@ export default function Portfolio() {
                   )}
                   <div className="space-y-5 p-6 sm:p-8">
                     <DialogHeader>
+                      <p className="text-xs font-medium uppercase tracking-wider text-primary">
+                        {selectedProject.context ?? (selectedProject.isPrivate ? "Professional work" : "Personal project")}
+                      </p>
                       <DialogTitle className="text-2xl dark:text-white">
                         {selectedProject.title}
                       </DialogTitle>
