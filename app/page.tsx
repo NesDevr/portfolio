@@ -1451,21 +1451,24 @@ export default function Portfolio() {
           <div className="space-y-8 max-w-3xl mx-auto text-lg">
             {[
               {
-                degree: "Bachelor's Degree in Software Engineering",
+                program: "Industrial Engineering",
                 institution: "Instituto Tecnológico de Ciudad Madero",
-                period: "2018 - 2023",
-                description:
-                  "Completed degree. Spanish: native. English: advanced professional proficiency.",
+                period: "2019–2023",
               },
-            ].map((edu, index) => (
+              {
+                program: "Software Engineering",
+                institution: "Instituto Tecnológico de Ciudad Madero",
+                period: "2017–2019",
+              },
+            ].map((edu) => (
               <Card
-                key={index}
+                key={edu.program}
                 className="p-6 dark:bg-slate-800 dark:border-slate-700"
               >
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                   <div>
                     <h3 className="text-xl font-bold dark:text-white">
-                      {edu.degree}
+                      {edu.program}
                     </h3>
                     <p className="text-primary">{edu.institution}</p>
                   </div>
@@ -1476,25 +1479,11 @@ export default function Portfolio() {
                     {edu.period}
                   </Badge>
                 </div>
-                <p className="text-muted-foreground dark:text-slate-300 mb-4">
-                  {edu.description}
-                </p>
-                {"achievements" in edu &&
-                  Array.isArray(edu.achievements) &&
-                  edu.achievements.length > 0 && (
-                    <div>
-                      <h4 className="font-semibold mb-2 dark:text-white">
-                        Highlights:
-                      </h4>
-                      <ul className="list-disc pl-5 text-muted-foreground dark:text-slate-300 space-y-1">
-                        {edu.achievements.map((item, itemIndex) => (
-                          <li key={itemIndex}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
               </Card>
             ))}
+            <p className="text-sm text-muted-foreground dark:text-slate-300">
+              Spanish (native) · English (advanced professional proficiency)
+            </p>
           </div>
         </section>
         {/* Contact Section */}
