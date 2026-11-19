@@ -411,9 +411,10 @@ export default function Portfolio() {
                 makes their daily tasks easier.
               </p>
               <p className="text-muted-foreground dark:text-slate-100 mb-4">
-                At radii., I led quotation delivery by assigning tasks,
-                supervising progress, implementing features and checking the
-                results. I built a manufacturing AI assistant, ML-based cost
+                At radii., I designed and led the redesign of an existing
+                manufacturing quotation feature, implementing most of the
+                changes across the interface, APIs and database. I built a
+                manufacturing AI assistant, ML-based cost
                 prediction, production PDF redaction and LangGraph document
                 workflows. I also managed cloud resources and container delivery
                 on Azure and AWS, including production Kubernetes workloads.
@@ -524,7 +525,7 @@ export default function Portfolio() {
                   description:
                     "Manufacturing software, from customer-facing quotations to AI assistants, cost prediction, document processing and cloud operations.",
                   responsibilities: [
-                    "Led React and Django/DRF quotation delivery: assigned tasks, supervised coworkers, implemented features and checked results across CAD uploads, pricing, review and checkout.",
+                    "Led the redesign of an existing manufacturing quotation feature using React, TypeScript, Django REST Framework, and PostgreSQL. Defined requirements with Operations, designed the interface, APIs, and database schema, and implemented most of the changes. Assigned tasks and reviewed the team’s work.",
                     "Independently built PDF redaction and a LangGraph PPAP workflow used by operations. Estimated complete-report preparation fell from a working day to five minutes or less.",
                     "Built the FastAPI-based CAD-processing service and redesigned asynchronous processing with Azure Service Bus and Container Apps, supporting up to 35 concurrent jobs per worker replica.",
                     "Built a LangChain/LangGraph manufacturing assistant with Azure OpenAI, Django APIs and PostgreSQL/pgvector for technical retrieval and permission-checked quotation actions.",
@@ -695,7 +696,7 @@ export default function Portfolio() {
               {
                 title: "radii. instant quoting platform",
                 description:
-                  "Led a manufacturing quotation platform from CAD uploads to pricing, review and checkout. Built across React and Django, with asynchronous CAD processing, an AI assistant and ML-based cost estimation.",
+                  "Led the redesign of an existing manufacturing quotation feature using React, TypeScript, Django REST Framework, and PostgreSQL. The platform supports asynchronous CAD processing, an AI assistant and ML-based cost estimation.",
                 image: "/assets/DFM.webp?height=400&width=600",
                 tags: [
                   "Python",
@@ -710,7 +711,7 @@ export default function Portfolio() {
                 isPrivate: true,
                 caseStudy: {
                   problem: "Customers needed a connected flow from uploaded CAD files to a usable quotation, with clear status while long-running processing finished.",
-                  contribution: "Led the implementation, assigned tasks to coworkers, supervised delivery, coded features and checked results. Owned the CAD processing redesign and database improvements, and built the manufacturing AI assistant and ML cost-estimation integrations. The quotation platform was shared team delivery.",
+                  contribution: "Defined requirements with Operations, designed the interface, APIs and database schema, implemented most of the redesign, and assigned and reviewed the team's work. Owned the CAD processing redesign and built the manufacturing AI assistant and ML cost-estimation integrations.",
                   implementation: "React and Django/DRF connect CAD uploads, processing status, pricing, review, checkout and PDF quotes, with Three.js for part visualization. FastAPI, Azure Service Bus and Container Apps handle asynchronous CAD processing, supporting up to 35 concurrent jobs per worker replica. A LangChain/LangGraph assistant uses Azure OpenAI, PostgreSQL/pgvector and validated Django tools to answer technical questions and manage quotations. PyTorch geometry features and XGBoost regression support manufacturing cost estimates.",
                   validation: "Checked quotation workflows and investigated failed jobs through application states and logs. Added permission checks and confirmation for chat-driven changes; evaluated pricing with MAE, RMSE and unusual-case review. Used Scout APM to identify N+1 queries and optimize Django data loading.",
                   outcome: "Shipped a production quotation workflow, preserved historical relationships through PostgreSQL migrations and backfills, and reduced Orders page loading from 4.4 seconds to one.",
