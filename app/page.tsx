@@ -28,7 +28,6 @@ import {
 
 type Project = {
   title: string;
-  hidden?: boolean;
   description: string;
   image?: string;
   imagePosition?: string;
@@ -887,22 +886,6 @@ export default function Portfolio() {
                 isPrivate: true,
               },
               {
-                title: "Coffee Shop Chatbot",
-                hidden: true,
-                description:
-                  "Next.js coffee storefront with a floating AI chat widget. Uses LangChain and OpenAI with Supabase vector search to retrieve coffee knowledge before answering customer questions.",
-                image: "/assets/coffee-snapshot.png?height=400&width=600",
-                imagePosition: "object-bottom",
-                tags: [
-                  "React",
-                  "Typescript",
-                  "Tailwind CSS",
-                  "Supabase",
-                  "LangChain",
-                ],
-                codeUrl: "https://github.com/NesDevr/coffee-shop-chatbot",
-              },
-              {
                 title: "Minley Budget App + MCP Server",
                 description:
                   "Built a native Android budgeting system that centralizes accounts, transactions, categories, recurring items, reminders, and monthly activity. I designed and implemented the app in Kotlin and Jetpack Compose, then added a local MCP server exposing validated finance tools for assistant-driven actions. Key challenges included synchronizing application state with Supabase, scheduling reliable reminders, and restricting assistant actions to safe, explicit operations. Personal project with public source code.",
@@ -1060,7 +1043,7 @@ export default function Portfolio() {
                   "https://github.com/NesDevr/sales-management-system-laravel-livewire",
               },
             ]
-              .filter((project: Project) => !project.hidden && Boolean(project.image || project.screenshots?.length))
+              .filter((project: Project) => Boolean(project.image || project.screenshots?.length))
               .filter(
                 (_project: Project, index) => showAllProjects || index < 6,
               )
